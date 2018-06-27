@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.bibased.dao.LingshiMstMapper" >
+  <resultMap id="BaseResultMap" type="com.example.bibased.javabean.LingshiMst" >
+    <id column="Id" property="id" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="erweima" property="erweima" jdbcType="VARCHAR" />
+    <result column="creatTime" property="creattime" jdbcType="DATE" />
+    <result column="updateTime" property="updatetime" jdbcType="DATE" />
+    <result column="telephone" property="telephone" jdbcType="VARCHAR" />
+    <result column="dizhi" property="dizhi" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="gonghao" property="gonghao" jdbcType="VARCHAR" />
+    <result column="nicheng" property="nicheng" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    Id, name, password, email, erweima, creatTime, updateTime, telephone, dizhi, description, 
+    gonghao, nicheng, status
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.example.bibased.javabean.LingshiMstExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from lingshi
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from lingshi
+    where Id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from lingshi
+    where Id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.example.bibased.javabean.LingshiMstExample" >
+    delete from lingshi
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.example.bibased.javabean.LingshiMst" >
+    insert into lingshi (Id, name, password, 
+      email, erweima, creatTime, 
+      updateTime, telephone, dizhi, 
+      description, gonghao, nicheng, 
+      status)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{erweima,jdbcType=VARCHAR}, #{creattime,jdbcType=DATE}, 
+      #{updatetime,jdbcType=DATE}, #{telephone,jdbcType=VARCHAR}, #{dizhi,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{gonghao,jdbcType=VARCHAR}, #{nicheng,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.bibased.javabean.LingshiMst" >
+    insert into lingshi
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="erweima != null" >
+        erweima,
+      </if>
+      <if test="creattime != null" >
+        creatTime,
+      </if>
+      <if test="updatetime != null" >
+        updateTime,
+      </if>
+      <if test="telephone != null" >
+        telephone,
+      </if>
+      <if test="dizhi != null" >
+        dizhi,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="gonghao != null" >
+        gonghao,
+      </if>
+      <if test="nicheng != null" >
+        nicheng,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="erweima != null" >
+        #{erweima,jdbcType=VARCHAR},
+      </if>
+      <if test="creattime != null" >
+        #{creattime,jdbcType=DATE},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=DATE},
+      </if>
+      <if test="telephone != null" >
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="dizhi != null" >
+        #{dizhi,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="gonghao != null" >
+        #{gonghao,jdbcType=VARCHAR},
+      </if>
+      <if test="nicheng != null" >
+        #{nicheng,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.bibased.javabean.LingshiMstExample" resultType="java.lang.Integer" >
+    select count(*) from lingshi
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update lingshi
+    <set >
+      <if test="record.id != null" >
+        Id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.password != null" >
+        password = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null" >
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.erweima != null" >
+        erweima = #{record.erweima,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creattime != null" >
+        creatTime = #{record.creattime,jdbcType=DATE},
+      </if>
+      <if test="record.updatetime != null" >
+        updateTime = #{record.updatetime,jdbcType=DATE},
+      </if>
+      <if test="record.telephone != null" >
+        telephone = #{record.telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dizhi != null" >
+        dizhi = #{record.dizhi,jdbcType=VARCHAR},
+      </if>
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gonghao != null" >
+        gonghao = #{record.gonghao,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nicheng != null" >
+        nicheng = #{record.nicheng,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update lingshi
+    set Id = #{record.id,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      password = #{record.password,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      erweima = #{record.erweima,jdbcType=VARCHAR},
+      creatTime = #{record.creattime,jdbcType=DATE},
+      updateTime = #{record.updatetime,jdbcType=DATE},
+      telephone = #{record.telephone,jdbcType=VARCHAR},
+      dizhi = #{record.dizhi,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR},
+      gonghao = #{record.gonghao,jdbcType=VARCHAR},
+      nicheng = #{record.nicheng,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.bibased.javabean.LingshiMst" >
+    update lingshi
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="erweima != null" >
+        erweima = #{erweima,jdbcType=VARCHAR},
+      </if>
+      <if test="creattime != null" >
+        creatTime = #{creattime,jdbcType=DATE},
+      </if>
+      <if test="updatetime != null" >
+        updateTime = #{updatetime,jdbcType=DATE},
+      </if>
+      <if test="telephone != null" >
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="dizhi != null" >
+        dizhi = #{dizhi,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="gonghao != null" >
+        gonghao = #{gonghao,jdbcType=VARCHAR},
+      </if>
+      <if test="nicheng != null" >
+        nicheng = #{nicheng,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.bibased.javabean.LingshiMst" >
+    update lingshi
+    set name = #{name,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      erweima = #{erweima,jdbcType=VARCHAR},
+      creatTime = #{creattime,jdbcType=DATE},
+      updateTime = #{updatetime,jdbcType=DATE},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      dizhi = #{dizhi,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      gonghao = #{gonghao,jdbcType=VARCHAR},
+      nicheng = #{nicheng,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <delete id="delete" parameterType="com.example.bibased.javabean.LingshiMst" >
+    delete from lingshi
+  </delete>
+  <select id="selectLinshi" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select *
+     from lingshi
+  </select>
+</mapper>

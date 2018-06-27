@@ -1,0 +1,54 @@
+Configuration:
+  status: warn
+#在控制台上只有出错的时候在打印
+#  status: trace
+#  在控制台上打印所有的log日志
+
+  Properties: # 定义变量  
+    Property:         
+      - name: log.path  
+        value: F:\xiangmu\demo\target\\tmp\\logs
+      - name: project.name  
+        value: spring-boot-log  
+
+  Appenders:  
+    Console:  #输出到控制台  
+      name: CONSOLE  
+      target: SYSTEM_OUT  
+      ThresholdFilter:  
+        level: trace
+        onMatch: ACCEPT  
+        onMismatch: DENY  
+      PatternLayout:  
+#        pattern: "%d{yyyy-MM-dd HH:mm:ss,SSS}:%4p %t (%F:%L) - %m%n"
+        pattern: "%highlight{%d{yyyy-MM-dd HH:mm:ss,SSS}:%4p %t (%F:%L) - %m%n}{STYLE=Logback}"
+
+    # 输出到文件，超过128MB归档
+    RollingFile:   
+      - name: ROLLING_FILE  
+        ignoreExceptions: false  
+        fileName: ${log.path}/${project.name}.log  
+        filePattern: "${log.path}/$${date:yyyy-MM}/${project.name}-%d{yyyy-MM-dd}-%i.log.gz"  
+        PatternLayout:  
+          pattern: "%d{yyyy-MM-dd HH:mm:ss,SSS}:%4p %t (%F:%L) - %m%n"  
+        Policies:  
+          SizeBasedTriggeringPolicy:  
+            size: "128 MB"  
+        DefaultRolloverStrategy:  
+          max: 1000  
+
+  Loggers:
+    Root:  
+      level: info  
+      AppenderRef:  
+        - ref: CONSOLE  
+        - ref: ROLLING_FILE
+#       异步的log4j2日志，提高速度
+    AsyncLogger:
+      Logger: # 为com.xjj包配置特殊的Log级别，方便调试
+            - name: com.test.dao
+              additivity: false
+              level: debug
+              AppenderRef:
+                - ref: CONSOLE
+                - ref: ROLLING_FILE

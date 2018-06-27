@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.bibased.dao.ZhongleiMstMapper" >
+  <resultMap id="BaseResultMap" type="com.example.bibased.javabean.ZhongleiMst" >
+    <id column="Id" property="id" jdbcType="VARCHAR" />
+    <result column="caixi" property="caixi" jdbcType="VARCHAR" />
+    <result column="lishu" property="lishu" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="createTime" property="createtime" jdbcType="DATE" />
+    <result column="updateTime" property="updatetime" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    Id, caixi, lishu, description, createTime, updateTime
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.example.bibased.javabean.ZhongleiMstExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from zhonglei
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from zhonglei
+    where Id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from zhonglei
+    where Id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.example.bibased.javabean.ZhongleiMstExample" >
+    delete from zhonglei
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.example.bibased.javabean.ZhongleiMst" >
+    insert into zhonglei (Id, caixi, lishu, 
+      description, createTime, updateTime
+      )
+    values (#{id,jdbcType=VARCHAR}, #{caixi,jdbcType=VARCHAR}, #{lishu,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{createtime,jdbcType=DATE}, #{updatetime,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.bibased.javabean.ZhongleiMst" >
+    insert into zhonglei
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="caixi != null" >
+        caixi,
+      </if>
+      <if test="lishu != null" >
+        lishu,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="updatetime != null" >
+        updateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="caixi != null" >
+        #{caixi,jdbcType=VARCHAR},
+      </if>
+      <if test="lishu != null" >
+        #{lishu,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=DATE},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.bibased.javabean.ZhongleiMstExample" resultType="java.lang.Integer" >
+    select count(*) from zhonglei
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update zhonglei
+    <set >
+      <if test="record.id != null" >
+        Id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.caixi != null" >
+        caixi = #{record.caixi,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lishu != null" >
+        lishu = #{record.lishu,jdbcType=VARCHAR},
+      </if>
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createtime != null" >
+        createTime = #{record.createtime,jdbcType=DATE},
+      </if>
+      <if test="record.updatetime != null" >
+        updateTime = #{record.updatetime,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update zhonglei
+    set Id = #{record.id,jdbcType=VARCHAR},
+      caixi = #{record.caixi,jdbcType=VARCHAR},
+      lishu = #{record.lishu,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR},
+      createTime = #{record.createtime,jdbcType=DATE},
+      updateTime = #{record.updatetime,jdbcType=DATE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.bibased.javabean.ZhongleiMst" >
+    update zhonglei
+    <set >
+      <if test="caixi != null" >
+        caixi = #{caixi,jdbcType=VARCHAR},
+      </if>
+      <if test="lishu != null" >
+        lishu = #{lishu,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=DATE},
+      </if>
+      <if test="updatetime != null" >
+        updateTime = #{updatetime,jdbcType=DATE},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.bibased.javabean.ZhongleiMst" >
+    update zhonglei
+    set caixi = #{caixi,jdbcType=VARCHAR},
+      lishu = #{lishu,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=DATE},
+      updateTime = #{updatetime,jdbcType=DATE}
+    where Id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

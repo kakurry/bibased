@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.bibased.dao.ChuancaiMstMapper" >
+  <resultMap id="BaseResultMap" type="com.example.bibased.javabean.ChuancaiMst" >
+    <id column="Id" property="id" jdbcType="VARCHAR" />
+    <result column="img" property="img" jdbcType="VARCHAR" />
+    <result column="caiming" property="caiming" jdbcType="VARCHAR" />
+    <result column="neirong1" property="neirong1" jdbcType="VARCHAR" />
+    <result column="neirong2" property="neirong2" jdbcType="VARCHAR" />
+    <result column="neirong3" property="neirong3" jdbcType="VARCHAR" />
+    <result column="neirong4" property="neirong4" jdbcType="VARCHAR" />
+    <result column="neirong5" property="neirong5" jdbcType="VARCHAR" />
+    <result column="createTime" property="createtime" jdbcType="DATE" />
+    <result column="updateTime" property="updatetime" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    Id, img, caiming, neirong1, neirong2, neirong3, neirong4, neirong5, createTime, updateTime
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.example.bibased.javabean.ChuancaiMstExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from chuancai
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from chuancai
+    where Id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from chuancai
+    where Id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.example.bibased.javabean.ChuancaiMstExample" >
+    delete from chuancai
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.example.bibased.javabean.ChuancaiMst" >
+    insert into chuancai (Id, img, caiming, 
+      neirong1, neirong2, neirong3, 
+      neirong4, neirong5, createTime, 
+      updateTime)
+    values (#{id,jdbcType=VARCHAR}, #{img,jdbcType=VARCHAR}, #{caiming,jdbcType=VARCHAR}, 
+      #{neirong1,jdbcType=VARCHAR}, #{neirong2,jdbcType=VARCHAR}, #{neirong3,jdbcType=VARCHAR}, 
+      #{neirong4,jdbcType=VARCHAR}, #{neirong5,jdbcType=VARCHAR}, #{createtime,jdbcType=DATE}, 
+      #{updatetime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.bibased.javabean.ChuancaiMst" >
+    insert into chuancai
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="img != null" >
+        img,
+      </if>
+      <if test="caiming != null" >
+        caiming,
+      </if>
+      <if test="neirong1 != null" >
+        neirong1,
+      </if>
+      <if test="neirong2 != null" >
+        neirong2,
+      </if>
+      <if test="neirong3 != null" >
+        neirong3,
+      </if>
+      <if test="neirong4 != null" >
+        neirong4,
+      </if>
+      <if test="neirong5 != null" >
+        neirong5,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="updatetime != null" >
+        updateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="img != null" >
+        #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="caiming != null" >
+        #{caiming,jdbcType=VARCHAR},
+      </if>
+      <if test="neirong1 != null" >
+        #{neirong1,jdbcType=VARCHAR},
+      </if>
+      <if test="neirong2 != null" >
+        #{neirong2,jdbcType=VARCHAR},
+      </if>
+      <if test="neirong3 != null" >
+        #{neirong3,jdbcType=VARCHAR},
+      </if>
+      <if test="neirong4 != null" >
+        #{neirong4,jdbcType=VARCHAR},
+      </if>
+      <if test="neirong5 != null" >
+        #{neirong5,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=DATE},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.bibased.javabean.ChuancaiMstExample" resultType="java.lang.Integer" >
+    select count(*) from chuancai
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update chuancai
+    <set >
+      <if test="record.id != null" >
+        Id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.img != null" >
+        img = #{record.img,jdbcType=VARCHAR},
+      </if>
+      <if test="record.caiming != null" >
+        caiming = #{record.caiming,jdbcType=VARCHAR},
+      </if>
+      <if test="record.neirong1 != null" >
+        neirong1 = #{record.neirong1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.neirong2 != null" >
+        neirong2 = #{record.neirong2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.neirong3 != null" >
+        neirong3 = #{record.neirong3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.neirong4 != null" >
+        neirong4 = #{record.neirong4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.neirong5 != null" >
+        neirong5 = #{record.neirong5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createtime != null" >
+        createTime = #{record.createtime,jdbcType=DATE},
+      </if>
+      <if test="record.updatetime != null" >
+        updateTime = #{record.updatetime,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update chuancai
+    set Id = #{record.id,jdbcType=VARCHAR},
+      img = #{record.img,jdbcType=VARCHAR},
+      caiming = #{record.caiming,jdbcType=VARCHAR},
+      neirong1 = #{record.neirong1,jdbcType=VARCHAR},
+      neirong2 = #{record.neirong2,jdbcType=VARCHAR},
+      neirong3 = #{record.neirong3,jdbcType=VARCHAR},
+      neirong4 = #{record.neirong4,jdbcType=VARCHAR},
+      neirong5 = #{record.neirong5,jdbcType=VARCHAR},
+      createTime = #{record.createtime,jdbcType=DATE},
+      updateTime = #{record.updatetime,jdbcType=DATE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.bibased.javabean.ChuancaiMst" >
+    update chuancai
+    <set >
+      <if test="img != null" >
+        img = #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="caiming != null" >
+        caiming = #{caiming,jdbcType=VARCHAR},
+      </if>
+      <if test="neirong1 != null" >
+        neirong1 = #{neirong1,jdbcType=VARCHAR},
+      </if>
+      <if test="neirong2 != null" >
+        neirong2 = #{neirong2,jdbcType=VARCHAR},
+      </if>
+      <if test="neirong3 != null" >
+        neirong3 = #{neirong3,jdbcType=VARCHAR},
+      </if>
+      <if test="neirong4 != null" >
+        neirong4 = #{neirong4,jdbcType=VARCHAR},
+      </if>
+      <if test="neirong5 != null" >
+        neirong5 = #{neirong5,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=DATE},
+      </if>
+      <if test="updatetime != null" >
+        updateTime = #{updatetime,jdbcType=DATE},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.bibased.javabean.ChuancaiMst" >
+    update chuancai
+    set img = #{img,jdbcType=VARCHAR},
+      caiming = #{caiming,jdbcType=VARCHAR},
+      neirong1 = #{neirong1,jdbcType=VARCHAR},
+      neirong2 = #{neirong2,jdbcType=VARCHAR},
+      neirong3 = #{neirong3,jdbcType=VARCHAR},
+      neirong4 = #{neirong4,jdbcType=VARCHAR},
+      neirong5 = #{neirong5,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=DATE},
+      updateTime = #{updatetime,jdbcType=DATE}
+    where Id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

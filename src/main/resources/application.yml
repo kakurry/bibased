@@ -1,0 +1,66 @@
+spring:
+  profiles:
+    active: prod
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/bibased
+    username: root
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+logging:
+  info:
+    com.example.bibased.dao: debug
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/bibased
+    username: root
+    password: root
+    initialize: true
+    minPoolSize: 3
+    maxPoolSize: 15
+    initialPoolSize: 3
+    maxIdleTime: 60
+
+#连接池的配置
+c3p0:
+    jdbcUrl: jdbc:mysql://127.0.0.1:3306/bibased?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&zeroDateTimeBehavior=convertToNull
+    user: root
+    password: root
+    driverClass: com.mysql.jdbc.Driver
+    minPoolSize: 2
+    maxPoolSize: 10
+    maxIdleTime: 300
+    acquireIncrement: 3
+    maxStatements: 1000
+    initialPoolSize: 3
+    idleConnectionTestPeriod: 60
+    acquireRetryAttempts: 30
+    acquireRetryDelay: 1000
+    breakAfterAcquireFailure: false
+    testConnectionOnCheckout: false
+
+#druid:
+#  driverClassName: com.mysql.jdbc.Driver
+#  url: jdbc:mysql://localhost:3306/bibased?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&zeroDateTimeBehavior=convertToNull&useSSL=false
+#  username: root
+#  password: root
+#  type: com.alibaba.druid.pool.DruidDataSource
+#  initialSize: 0
+#  minIdle: 3
+#  maxActive: 8
+#  maxWait: 60000
+#  timeBetweenEvictionRunsMillis: 60000
+#  minEvictableIdleTimeMillis: 300000
+#  validationQuery: select 'x'
+#  testWhileIdle: true
+#  testOnBorrow: false
+#  testOnReturn: false
+#  poolPreparedStatements: true
+#  maxPoolPreparedStatementPerConnectionSize: 20
+#  filters: stat,wall,slf4j
+#  connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+#  useGlobalDataSourceStat: true
+
