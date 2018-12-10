@@ -10,6 +10,48 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+#下面这个报红没事，这部分用于解决springboot2.0以上上传文件时，文件大小限制的
+  servlet:
+    multipart:
+      max-file-size: 10000000Mb
+  http:
+    multipart:
+      max-request-size: 100000000000Mb
+
+  mail:
+    host: smtp.126.com
+    username: kakurry@126.com
+    password: 19940801HeDongXu
+    default-encoding: UTF-8
+
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password: root
+    jedis:
+      pool:
+        # 连接池最大连接数
+        max-active: 2000
+        #  连接池最小空闲连接
+        min-idle: 0
+    lettuce:
+      pool:
+        # 连接池最大阻塞等待时间
+        max-wait: -1
+        #  连接池最大空闲连接
+        max-idle: 500
+        # 连接超时时间（毫秒）
+    timeout: 3000
+
+mail:
+  fromMail:
+    addr: kakurry@126.com
+
+aliyun:
+  sms:
+    accessKeyId: AccessKeySecret
+    accessKeySecret: a2y4PK15K5LpehEThDbDE2inKn3j29
+
 logging:
   info:
     com.example.bibased.dao: debug

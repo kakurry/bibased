@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<p th:text="'尊敬的 ' + ${user} + '用户:'"></p>
+<div style="width: 200px;height: 300px;">
+    <img style="width: 200px;height: 300px;"  src="http://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1541591825381&di=3df8c24c5c2fb4ecfab9b341f557fd87&imgtype=0&src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20171108%2F8c17512f3fbb4fa5b2f3ead71ca5f209.jpeg">
+</div>
+<p th:text=" '恭喜您注册成为'+${web}+'的用户,同时感谢您对'+${company}+'的关注与支持并欢迎您使用'+${product}+'的产品与服务。'"></p>
+
+</body>
+</html>
