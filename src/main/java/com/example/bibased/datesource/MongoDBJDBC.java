@@ -110,7 +110,7 @@ public class MongoDBJDBC{
      * 插入文档    （相当于Mysql的insert）
      * @param args
      */
-    /*public static void main( String args[] ){
+    public static void main( String args[] ){
         try{
             // 连接到 mongodb 服务
             MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
@@ -122,11 +122,11 @@ public class MongoDBJDBC{
             MongoCollection<Document> collection = mongoDatabase.getCollection("MongoDB");
             System.out.println("集合 test 选择成功");
             //插入文档
-            *//**
+            /**
              * 1. 创建文档 org.bson.Document 参数为key-value的格式
              * 2. 创建文档集合List<Document>
              * 3. 将文档集合插入数据库集合中 mongoCollection.insertMany(List<Document>) 插入单个文档可以用 mongoCollection.insertOne(Document)
-             * *//*
+             * */
             Document document = new Document("title", "MongoDB").
                     append("description", "database").
                     append("likes", 100).
@@ -138,7 +138,7 @@ public class MongoDBJDBC{
         }catch(Exception e){
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
         }
-    }*/
+    }
 
     /**
      * 检索所有的文档       (相当于Mysql的select)
