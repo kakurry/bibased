@@ -5,15 +5,19 @@ import com.example.bibased.dto.BootstrapTablePageDTO;
 import com.example.bibased.javabean.QianlinshiMst;
 import com.example.bibased.javabean.UserMst;
 import com.example.bibased.javabean.UserMstExample;
+import com.example.bibased.service.MailService;
 import com.example.bibased.service.QianlinshiService;
 import com.example.bibased.service.UserService;
 import com.example.bibased.util.JqPage;
+import com.example.bibased.util.SendDuanXinUtils;
 import com.example.bibased.util.UUIDGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +31,13 @@ public class UserController {
     @Autowired
     @Qualifier("qianlinshiServiceImpl")
     private QianlinshiService qianlinshiService;
+
+    @Autowired
+    private MailService mailService;
+
+    @Autowired
+    private TemplateEngine templateEngine;
+
     /**
      *
      * @param username
@@ -55,6 +66,7 @@ public class UserController {
                 qianlinshiMst.setUsername(aa.getUsername());
                 qianlinshiService.insert(qianlinshiMst);
             }
+
             return result;
         }
 
@@ -71,6 +83,18 @@ public class UserController {
         userMst.setEmail(email);
         boolean result = true;
         result = userService.insert(userMst);
+
+        //创建邮件正文
+        Context context = new Context();
+        context.setVariable("user", username);
+        context.setVariable("web", "留香阁餐厅");
+        context.setVariable("company", "kakurry工作室");
+        context.setVariable("product","留香阁网站");
+        String emailContent = templateEngine.process("emailTemplate", context);
+        mailService.sendHtmlMail(email,"主题：这是模板邮件",emailContent);
+
+        /*用于发送短信告诉人登录此系统*/
+        SendDuanXinUtils.sendDuanxin(telephone,"\""+username+"\"");
         return result;
     }
 

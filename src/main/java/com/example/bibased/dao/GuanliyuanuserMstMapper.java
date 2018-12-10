@@ -30,4 +30,5 @@ public interface GuanliyuanuserMstMapper {
     int updateByPrimaryKeySelective(GuanliyuanuserMst record);
 
     int updateByPrimaryKey(GuanliyuanuserMst record);
+
 }

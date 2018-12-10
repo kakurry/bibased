@@ -334,5 +334,16 @@ public class PingController {
             return  false;
         }
     }
+
+    /**
+     * 查询整个回评的list
+     * @return
+     */
+    @RequestMapping("huipingAlllist.action")
+    public @ResponseBody List<HuipingMst> huipingqueryAlllist(){
+        HuipingMstExample criteria = new HuipingMstExample();
+        HuipingMstExample.Criteria cri = criteria.createCriteria();
+        return  huipingService.selectByExample(criteria);
+    }
 }
 
