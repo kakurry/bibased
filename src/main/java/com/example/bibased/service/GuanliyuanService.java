@@ -20,4 +20,5 @@ public interface GuanliyuanService {
     List<GuanliyuanuserMst> selectByExample(GuanliyuanuserMstExample criteria);
 
     int selectBynameAndpassword(GuanliyuanuserMstExample criteria);
+
 }
