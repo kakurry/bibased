@@ -43,6 +43,11 @@ spring:
         # 连接超时时间（毫秒）
     timeout: 3000
 
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/MyMongoDB
+
+
 mail:
   fromMail:
     addr: kakurry@126.com
