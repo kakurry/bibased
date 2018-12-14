@@ -8,8 +8,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class FreeMarkerController {
-    @RequestMapping("index.html")
-    public String index(){
-        return "freemarker_ceshi";
+    @RequestMapping("qianduanpage")
+    public String qianduanpage(){
+        return "bibased_qianduan/zhuce";
+    }
+
+    @RequestMapping("houduanpage")
+    public String houduanpage(){
+        return "bibased_qianduan/login";
     }
 }
