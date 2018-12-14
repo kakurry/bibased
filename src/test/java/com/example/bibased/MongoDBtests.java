@@ -92,4 +92,5 @@ public class MongoDBtests {
         System.out.println("输出所有作者的数据：");
         System.out.println(authorRepository.findAll());
     }
+
 }
