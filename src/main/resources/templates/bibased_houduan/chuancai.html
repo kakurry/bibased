@@ -1,0 +1,829 @@
+<!doctype html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <title>川菜管理</title>
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link href='http://fonts.useso.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <!--<link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.css">-->
+    <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.css">
+
+    <!-- <script src="lib/jquery-1.11.1.min.js" type="text/javascript"></script>-->
+    <!-- <script src="lib/bootstrap/js/bootstrap.js"></script>-->
+    <!--管理员Start-->
+    <link href="common/scripts/bootstrap3.3/css/bootstrap.css" rel="stylesheet">
+    <link href="common/scripts/bootstrap3.3/bootstrap-table/bootstrap-table.css" rel="stylesheet">
+    <link href="common/scripts/bootstrap3.3/bootstrapValidator/css/bootstrapValidator.min.css" rel="stylesheet">
+    <link href="common/scripts/bootstrap3.3/jquery-confirm/css/jquery-confirm.css" rel="stylesheet">
+    <link href="common/scripts/layui/css/layui.css" rel="stylesheet">
+    <link href="common/scripts/jquery_mloading/jquery.mloading.css" rel="stylesheet">
+    <script src="common/scripts/My97DatePicker/WdatePicker.js"></script>
+    <script src="common/scripts/common-util.js"></script>
+    <script src="common/scripts/jquery/1.11.1/jquery.min.js"></script>
+    <script src="common/scripts/bootstrap3.3/js/bootstrap.js"></script>
+    <script src="common/scripts/bootstrap3.3/bootstrapValidator/js/bootstrapValidator.min.js"></script>
+    <script src="common/scripts/bootstrap3.3/bootstrap-table/bootstrap-table.js"></script>
+    <script src="common/scripts/bootstrap3.3/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+    <script src="common/scripts/bootstrap3.3/bootstrap-table/bootstrap-table-export/bootstrap-table-export.js"></script>
+    <script src="common/scripts/bootstrap3.3/bootstrap-table/bootstrap-table-export/tableExport.min.js"></script>
+    <script src="common/scripts/bootstrap3.3/jquery-confirm/js/jquery-confirm.js"></script>
+    <script src="common/scripts/jquery_mloading/jquery.mloading.js"></script>
+    <script src="common/scripts/layui/layui.all.js"></script>
+
+    <!--管理员Start-->
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/theme.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/premium.css">
+    <style type="text/css">
+        .bootstrap-table .fixed-table-container{
+            /*40 * 5(5行总高) + 41(标题高度40 + 标题 1 border-top) + 2(自身 1 border-top + 1 border-bottom)*/
+            height:243px!important;
+        }
+        .bootstrap-table .fixed-table-container tr{
+            /*行高*/
+            height:40px!important;
+        }
+    </style>
+
+</head>
+<body class=" theme-blue">
+
+<!-- Demo page code -->
+
+<script type="text/javascript">
+    $(function() {
+        var match = document.cookie.match(new RegExp('color=([^;]+)'));
+        if(match) var color = match[1];
+        if(color) {
+            $('body').removeClass(function (index, css) {
+                return (css.match (/\btheme-\S+/g) || []).join(' ')
+            })
+            $('body').addClass('theme-' + color);
+        }
+
+        $('[data-popover="true"]').popover({html: true});
+
+    });
+</script>
+<style type="text/css">
+    #line-chart {
+        height:300px;
+        width:800px;
+        margin: 0px auto;
+        margin-top: 1em;
+    }
+    .navbar-default .navbar-brand, .navbar-default .navbar-brand:hover {
+        color: #fff;
+    }
+</style>
+
+<script type="text/javascript">
+    $(function() {
+        var uls = $('.sidebar-nav > ul > *').clone();
+        uls.addClass('visible-xs');
+        $('#main-menu').append(uls.clone());
+    });
+</script>
+
+<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<!-- Le fav and touch icons -->
+<link rel="shortcut icon" href="../assets/ico/favicon.ico">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+<link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+
+
+<!--[if lt IE 7 ]> <body class="ie ie6"> <![endif]-->
+<!--[if IE 7 ]> <body class="ie ie7 "> <![endif]-->
+<!--[if IE 8 ]> <body class="ie ie8 "> <![endif]-->
+<!--[if IE 9 ]> <body class="ie ie9 "> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+
+<!--<![endif]-->
+<div class="navbar navbar-default" role="navigation">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="" href="index.html"><span class="navbar-brand"><span class="fa fa-paper-plane"></span> 留香阁餐厅管理系统</span></a></div>
+
+    <div class="navbar-collapse collapse" style="height: 1px;">
+        <ul id="main-menu" class="nav navbar-nav navbar-right">
+            <li class="dropdown hidden-xs">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="dongtaiuser">
+                    <!--<span class="glyphicon glyphicon-user padding-right-small" style="position:relative;top: 3px;"></span> 何东旭-->
+                    <i class="fa fa-caret-down"></i>
+                </a>
+
+                <ul class="dropdown-menu">
+                    <li><a href="./">My Account</a></li>
+                    <li class="divider"></li>
+                    <li class="dropdown-header">Admin Panel</li>
+                    <li><a href="./">Users</a></li>
+                    <li><a href="./">Security</a></li>
+                    <li><a tabindex="-1" href="./">Payments</a></li>
+                    <li class="divider"></li>
+                    <li><a tabindex="-1" href="sign-in.html">Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+
+    </div>
+</div>
+</div>
+
+
+<div class="sidebar-nav">
+    <ul>
+        <li><a href="index.html" class="nav-header"><span class="glyphicon glyphicon-th-large"></span> 首页</a></li>
+        <li><a href="guanliyuanser.html" class="nav-header"><i class="	glyphicon glyphicon-user"></i> 系统管理员管理</a></li>
+        <li><a href="yonghu.html" class="nav-header"><i class="	glyphicon glyphicon-user"></i> 用户管理</a></li>
+        <!-- <li><a href="guanliyuanser.html" class="nav-header"><i class="fa fa-fw fa-question-circle"></i> 公告管理</a></li>-->
+        <li><a href="dianpu.html" class="nav-header"><i class="glyphicon glyphicon-home"></i> 店铺管理</a></li>
+        <li><a href="caixizhonglei.html" class="nav-header"><i class="fa fa-fw fa-dashboard"></i> 菜系种类</a></li>
+        <li><a href="#" data-target=".bb" class="nav-header" data-toggle="collapse"><i class="fa fa-fw fa-dashboard"></i> 国内菜系管理<i class="fa fa-collapse"></i></a></li>
+        <li><ul class="bb nav nav-list collapse">
+            <li><a href="chuancai.html"><span class="fa fa-caret-right"></span> 川菜</a></li>
+            <li ><a href="yuecai.html"><span class="fa fa-caret-right"></span> 粤菜</a></li>
+            <li ><a href="xiangcai.html"><span class="fa fa-caret-right"></span> 湘菜</a></li>
+        </ul></li>
+        <li><a href="#" data-target=".aa" class="nav-header" data-toggle="collapse"><i class="fa fa-fw fa-dashboard"></i> 国外菜系管理<i class="fa fa-collapse"></i></a></li>
+        <li><ul class="aa nav nav-list collapse">
+            <li><a href="japancai.html"><span class="fa fa-caret-right"></span> 日本菜</a></li>
+            <li ><a href="frenchcai.html"><span class="fa fa-caret-right"></span> 法国菜</a></li>
+            <li ><a href="koreacai.html"><span class="fa fa-caret-right"></span> 韩国菜</a></li>
+        </ul></li>
+        <li data-popover="true" data-content="Items in this group require a <strong><a href='http://portnine.com/bootstrap-themes/aircraft' target='blank'>premium license</a><strong>." rel="popover" data-placement="right"><a href="#" data-target=".premium-menu" class="nav-header collapsed" data-toggle="collapse"><i class="fa fa-fw fa-fighter-jet"></i>高级功能<i class="fa fa-collapse"></i></a></li>
+        <li><a href="pinglun.html" class="nav-header"><span class="glyphicon glyphicon-list-alt"></span>评论管理</a></li>
+        <li><ul class="premium-menu nav nav-list collapse">
+            <li ><a href="premium-blog.html"><span class="fa fa-caret-right"></span> Blog</a></li>
+            <li ><a href="premium-blog-item.html"><span class="fa fa-caret-right"></span> Blog Page</a></li>
+            <li ><a href="premium-colors.html"><span class="fa fa-caret-right"></span> 系统主题</a></li>
+        </ul></li>
+        <li><a href="#" class="nav-header" onclick="zhuxiaohoutai()"><i class="fa fa-fw fa-comment"></i> 注销</a></li>
+    </ul>
+</div>
+<script type="text/javascript">
+    function zhuxiaohoutai(){
+        alert("注销成功！");
+        $.post("http://localhost:8082/zhuxiaohoutai.action", function (data) {
+            if(data == true){
+                window.location.href="login.html";
+            }
+        });
+    }
+</script>
+<div class="content">
+<div class="header">
+
+    <h1 class="page-title">川菜管理</h1>
+    <ul class="breadcrumb">
+        <li><a href="index.html">Home</a> </li>
+        <li class="active">川菜管理</li>
+    </ul>
+    <div class="panel-body" style="padding-bottom:0px;">
+        <div class="panel panel-default">
+            <div class="panel-heading">查询条件</div>
+            <div class="panel-body">
+                <form id="searchConditionForm" name="searchConditionForm" class="form-horizontal">
+                    <div class="input-group input-group-sm  col-md-10">
+                        <span class="input-group-addon" id="sizing-addon2">创建时间从：</span>
+                        <input name="createTimeHH" id="createTimeHH" type="text" placeholder="请选择..." aria-describedby="sizing-addon2"  class="form-control Wdate" style="width: 75px"  onclick="WdatePicker({maxDate:'#F{$dp.$D(\'updateTimeHH\')}'});"/>
+
+                        <span class="input-group-addon" id="sizing-addon2">创建时间至：</span>
+                        <input name="updateTimeHH" id="updateTimeHH" type="text" placeholder="请选择..." aria-describedby="sizing-addon2"  class="form-control Wdate" style="width: 75px" onclick="WdatePicker({minDate:'#F{$dp.$D(\'createTimeHH\')}'});"/>
+
+                        <span class="input-group-addon" id="sizing-addon2">川菜名：</span>
+                        <input type="text" class="form-control"  name="caimingHH" id="caimingHH" placeholder="请输入..." aria-describedby="sizing-addon2" style="width: 75px">
+
+                              <span class="input-group-btn ">
+                                <button class="btn btn-primary" type="button" id="search" onclick="searchDatas();"><span class="glyphicon glyphicon-zoom-in"></span>查 &nbsp;&nbsp;&nbsp;询</button>
+                                <button class="btn btn-primary" type="button" id="resetFrom" onclick="resetSearchConditions();"><span class="glyphicon glyphicon-remove"></span>重&nbsp;&nbsp;&nbsp;&nbsp;置</button>
+                              </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="toolbar" class="btn-group">
+    <button id="btn_addOpt" type="button" class="btn btn-default"
+            onclick="addFun();">
+			<span
+                    style="display: inline-block; vertical-align: middle; margin-right: 3px;"
+                    class="ui-icon ui-icon-circle-plus glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+    </button>
+    <button id="btn_updateOpt" type="button" class="btn btn-default"
+            onclick="updateFun();">
+			<span
+                    style="display: inline-block; vertical-align: middle; margin-right: 3px;"
+                    class="ui-icon ui-icon-pencil glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
+    </button>
+    <button id="btn_delOpt" type="button" class="btn btn-default"
+            onclick="deleteFun();">
+			<span
+                    style="display: inline-block; vertical-align: middle; margin-right: 3px;"
+                    class="ui-icon ui-icon-trash glyphicon glyphicon-trash" aria-hidden="true"></span>删除
+    </button>
+</div>
+<table id="tb_roles" >
+</table>
+<style type="text/css">
+    .modal-backdrop {
+        z-index: 0;;
+    }
+</style>
+<!-- 新增信息 start -->
+<!-- 模态框（Modal） -->
+<div class="modal fade bs-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-lg">
+        <form class="form-horizontal" role="form" id="infoForm" name="infoForm" method="POST">
+            <div class="modal-content">
+                <div class="modal-header " style="color: #333; background-color: #f5f5f5; border-color: #ddd;">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myModalLabel">川菜新增/修改</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="id" id="id" />
+
+                    <div class="form-group">
+                        <div class="row">
+                            <label for="caiming" class="col-sm-2 control-label"><span style="color:red; font-weight:bold;">*</span>川菜名：</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" name="caiming" id="caiming" placeholder="请输入..." aria-describedby="sizing-addon2" />
+                            </div>
+                            <div class="col-sm-1"></div>
+                            <label for="img" class="col-sm-2 control-label">img：</label>
+                            <div class="col-sm-3">
+                                <select class="form-control" name="img" id="img">
+                                    <option value="">请选择</option>
+                                    <option value="chuancai1">香辣素肉</option>
+                                    <option value="chuancai2">香辣猪肚</option>
+                                    <option value="chuancai3">辣子肉块</option>
+                                    <option value="chuancai18">烤鸡</option>
+                                    <option value="chuancai5">辣子炸鸡</option>
+                                    <option value="chuancai6">宫鲜鸭</option>
+                                    <option value="chuancai7">香辣鸡汤</option>
+                                    <option value="chuancai8">香辣羊杂</option>
+                                    <option value="chuancai9">麻辣肉块</option>
+                                    <option value="chuancai10">香辣鱼</option>
+                                    <option value="chuancai19">麻辣火锅</option>
+                                    <option value="chuancai12">麻辣田螺</option>
+                                    <option value="chuancai13">水煮鱼</option>
+                                    <option value="chuancai14">肉里藏珠</option>
+                                    <option value="chuancai15">麻婆豆腐</option>
+                                    <option value="chuancai16">麻辣鱼</option>
+                                    <option value="chuancai17">干锅鸡</option>
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="display:none">
+                        <div class="row" >
+                            <label for="createTime" class="col-sm-2 control-label">创建时间：</label>
+                            <div class="col-sm-3">
+                                <input name="createTime" id="createTime" type="text" readonly="readonly" class="form-control" onclick="WdatePicker({onpicked:validateTimes});" />
+                            </div>
+                            <label for="updateTime" class="col-sm-3 control-label">修改时间:</label>
+                            <div class="col-sm-3">
+                                <input name="updateTime" id="updateTime" type="text" readonly="readonly" class="form-control" onclick="WdatePicker({onpicked:validateTimes});" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <label for="neirong1" class="col-sm-2 control-label"><span style="color:red; font-weight:bold;">*</span>描述一：</label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" name="neirong1" id="neirong1" rows="2" placeholder="请输入..." style="resize: none;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <label for="neirong2" class="col-sm-2 control-label"><span style="color:red; font-weight:bold;">*</span>描述二：</label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" name="neirong2" id="neirong2" rows="2" placeholder="请输入..." style="resize: none;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <label for="neirong3" class="col-sm-2 control-label"><span style="color:red; font-weight:bold;">*</span>描述三：</label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" name="neirong3" id="neirong3" rows="2" placeholder="请输入..." style="resize: none;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <label for="neirong4" class="col-sm-2 control-label"><span style="color:red; font-weight:bold;">*</span>描述四：</label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" name="neirong4" id="neirong4" rows="2" placeholder="请输入..." style="resize: none;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <label for="neirong5" class="col-sm-2 control-label"><span style="color:red; font-weight:bold;">*</span>描述五：</label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" name="neirong5" id="neirong5" rows="2" placeholder="请输入..." style="resize: none;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <a id="popId" tabindex="0" class="btn btn-lg  btn-primary" role="button" data-toggle="popover" data-trigger="focus"  data-placement="top"
+                       title="信息提示" data-content="And here's some amazing content. It's very engaging. Right?" onclick="submitHandler()">保存</a>
+                    <button type="button" class="btn btn-lg  btn-default"  data-dismiss="modal">关闭
+                    </button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+<!-- 新增信息 end -->
+<script type="text/javascript">
+$(document).ready(function() {
+
+    $.post("http://localhost:8082/dongtaiuser.action",function(data) {
+        var htmlstr= "<span class=\"glyphicon glyphicon-user padding-right-small\" style=\"position:relative;top: 3px;\"></span> "+ data.name;
+        $("#dongtaiuser").append(htmlstr);
+    });
+
+    //表单验证配置
+    $('#infoForm').bootstrapValidator({
+        message: '不可用的值',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            caiming: {
+                validators: {
+                    notEmpty: {
+                        message: '川菜名不能为空'
+                    }
+                }
+            },
+            neirong1: {
+                validators: {
+                    notEmpty: {
+                        message: '描述一不能为空'
+                    }
+                }
+            },
+            /* neirong2: {
+             validators: {
+             notEmpty: {
+             message: '描述二不能为空'
+             }
+             }
+             },
+             neirong3: {
+             validators: {
+             notEmpty: {
+             message: '描述三不能为空'
+             }
+             }
+             },*/
+            img: {
+                validators: {
+                    notEmpty: {
+                        message: 'img不能为空'
+                    }
+                }
+            }
+        }
+    });
+
+    //myModal 模态层的隐藏注册事件
+    $("#myModal").on("hide.bs.modal", function () {
+        $("#infoForm")[0].reset();//使用dom的reset
+        $("#id").val("");//避免hidden出现不能reset的情况
+        //重置验证状态
+        $("#infoForm").data('bootstrapValidator').resetForm();
+    });
+    var oTable = new TableInit();
+    oTable.Init();
+});
+
+var TableInit = function () {
+    var oTableInit = new Object();
+    var urlStr = "http://localhost:8082/queryChuanCai.action";
+    //初始化Table
+    oTableInit.Init = function () {
+        $('#tb_roles').bootstrapTable({
+            url: urlStr,         	//请求后台的URL（*）
+            method: 'post',                      //请求方式（*）
+            toolbar: '#toolbar',                //工具按钮用哪个容器
+            striped: true,                      //是否显示行间隔色
+            cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+            pagination: true,                   //是否显示分页（*）
+            sortable: true,                     //是否启用排序
+            sortOrder: "asc",                   //排序方式
+            striped: true, 						//是否显示行间隔色
+            // sortName:"onDate",
+            dataType:'json',
+            queryParamsType : "undefined",
+            contentType: "application/x-www-form-urlencoded",
+            queryParams: function queryParams(params) {   //设置查询参数
+                var param = {
+                    //设置为undefined可以获取pageNumber，pageSize，searchText，sortName，sortOrder
+                    //设置为limit可以获取limit, offset, search, sort, order
+                    pageNo:params.pageNumber,
+                    pageSize:params.pageSize,
+                    orderBy:params.sortName,
+                    orderType:params.sortOrder,
+                    /* createTime:$('#createTimeHH').val(),
+                     updateTime:$('#updateTimeHH').val(),*/
+                    caiming:$('#caimingHH').val(),
+                    searchText:params.searchText
+                };
+                return param;
+            },
+            sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
+            pageNumber:1,                       //初始化加载第一页，默认第一页
+            pageSize: 5,                       //每页的记录行数（*）
+            pageList: [5, 10, 15, 20],        //可供选择的每页的行数（*）
+            strictSearch: true,
+            showColumns: true,                  //是否显示所有的列
+            showRefresh: true,                  //是否显示刷新按钮
+            minimumCountColumns: 2,             //最少允许的列数
+            clickToSelect: true,                //是否启用点击选中行
+            maintainSelected:false,
+            checkboxHeader:true,
+            height: 460,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+            uniqueId: "id",                     //每一行的唯一标识，一般为主键列
+            showToggle:true,                    //是否显示详细视图和列表视图的切换按钮
+            cardView: false,                    //是否显示详细视图
+            detailView: false,                   //是否显示父子表
+            /*  showExport: true,                     //是否显示导出
+             exportDataType: "basic",              //basic', 'all', 'selected'. */
+            onClickRow: function(row, $element) {
+                //$element是当前tr的jquery对象
+                // $element.css("background-color", "green");
+            },//单击row事件
+            columns: [
+                {
+                    disabled : true,
+                    checkbox: true,
+                    align: 'center',
+                    valign: 'middle'
+                },
+                {
+                    title: 'id',
+                    field: 'id',
+                    align: 'center',
+                    valign: 'middle',
+                    visible:false
+                },
+                {
+                    title: '川菜名称',
+                    field: 'caiming',
+                    align: 'center',
+                    valign: 'middle'
+                },
+                {
+                    title: 'img',
+                    field: 'img',
+                    align: 'center',
+                    valign: 'middle'/*,
+                    formatter:function(value) {
+                        if (value == '1')
+                            return '是';
+                        else
+                            return '否';
+                    }*/
+                },
+                {
+                    title: '描述一',
+                    field: 'neirong1',
+                    align: 'center',
+                    valign: 'middle'
+                },
+                {
+                    title: '描述二',
+                    field: 'neirong2',
+                    align: 'center',
+                    valign: 'middle'
+                },
+                {
+                    title: '描述三',
+                    field: 'neirong3',
+                    align: 'center',
+                    valign: 'middle'
+                },
+                {
+                    title: '描述四',
+                    field: 'neirong4',
+                    align: 'center',
+                    valign: 'middle'
+                },
+                {
+                    title: '描述五',
+                    field: 'neirong5',
+                    align: 'center',
+                    valign: 'middle'
+                },
+                {
+                    title: '创建时间',
+                    field: 'createtime',
+                    align: 'center',
+                    valign: 'middle',
+                    visible:false/*,
+                 formatter:dateFormatter,
+                 sortable: true*/
+                },
+                {
+                    title: '修改时间',
+                    field: 'updatetime',
+                    align: 'center',
+                    valign: 'middle',
+                    visible:false/*,
+                 formatter:dateFormatter,
+                 sortable: true*/
+                }
+            ]
+        });
+    };
+    return oTableInit;
+};
+
+/**查询数据*/
+function searchDatas() {
+    $('#tb_roles').bootstrapTable('refresh');  //刷新列表
+}
+
+/**重置查询条件*/
+function resetSearchConditions() {
+    $("#searchConditionForm")[0].reset();
+    $('#tb_roles').bootstrapTable('refresh');  //刷新列表
+}
+
+/**新增渠道*/
+function addFun() {
+    $('#myModal').modal('show');
+}
+/**修改信息*/
+function updateFun() {
+    var rowids = $("#tb_roles").bootstrapTable("getSelections")//获取选中行id(数组)
+    if(rowids.length <= 0) {
+        $.alert({
+            title: '提示',
+            content: '请选择一行数据修改！',
+            type:'red',             //一般危险操作用red,保存成功操作green
+            buttons: {              //定义按钮
+                confirm: {
+                    text: '确认',
+                    btnClass: 'btn-primary',
+                    action: function(){ //这里写点击按钮回调函数
+                    }
+                }
+            }
+        });
+    } else if (rowids.length == 1) {
+        $("#id").val(rowids[0].id);
+        $("#caiming").val(rowids[0].caiming);
+        $("#img").val(rowids[0].img);
+        $("#neirong1").val(rowids[0].neirong1);
+        $("#neirong2").val(rowids[0].neirong2);
+        $("#neirong3").val(rowids[0].neirong3);
+        $("#neirong4").val(rowids[0].neirong4);
+        $("#neirong5").val(rowids[0].neirong5);
+        $("#createTime").val(new Date(rowids[0].createTime).format('yyyy-MM-dd'));
+        $("#updateTime").val(new Date(rowids[0].updateTime).format('yyyy-MM-dd'));
+        $('#myModal').modal('show');
+    } else {
+        $.alert({
+            title: '提示',
+            content: '每次只能选择一行数据修改！',
+            type:'red',             //一般危险操作用red,保存成功操作green
+            buttons: {              //定义按钮
+                confirm: {
+                    text: '确认',
+                    btnClass: 'btn-primary',
+                    action: function(){ //这里写点击按钮回调函数
+                    }
+                }
+            }
+        });
+    }
+}
+
+/**删除数据*/
+function deleteFun() {
+    var arr = $('#tb_roles').bootstrapTable('getSelections');
+    if(arr.length>0){
+        $.confirm({
+            title: '提示',
+            content: '您确认需要删除选中的数据吗？',
+            type:'red',
+            icon:'glyphicon glyphicon-question-sign',
+            buttons: {
+                ok: {
+                    text: '确认',
+                    btnClass: 'btn-primary',
+                    action: function(){ //确认按钮回调
+                        deleteTask();
+                    }
+                },
+                cancel: {
+                    text: '取消',
+                    action: function(){ //取消按钮回调
+                    }
+                }
+            }
+        });
+    } else {
+        $.alert({
+            title: '提示',
+            content: '请选择一行数据删除！',
+            type:'red',             //一般危险操作用red,保存成功操作green
+            buttons: {              //定义按钮
+                confirm: {
+                    text: '确认',
+                    btnClass: 'btn-primary',
+                    action: function(){ //这里写点击按钮回调函数
+                    }
+                }
+            }
+        });
+    }
+}
+
+function deleteTask(){
+    var delUrl = $("#batchDeleteUrl").val();
+    var rowids = $("#tb_roles").bootstrapTable("getSelections");
+    var ids="";
+    for (var i=0;i<rowids.length;i++)
+    {
+        ids+=rowids[i].id +",";
+    }
+    if(ids.length >0){
+        ids=ids.substring(0,ids.length);
+    }
+    console.log(ids);
+    $.post("http://localhost:8082/deleteChuanCai.action", {"ids": ids}, function(data) {
+        console.log("delUrl" + delUrl);
+        if (data || data=='true') {
+            $.alert({
+                title: '提示',
+                content: '删除成功！',
+                type:'green',             //一般危险操作用red,保存成功操作green
+                buttons: {              //定义按钮
+                    confirm: {
+                        text: '确认',
+                        btnClass: 'btn-primary',
+                        action: function(){ //这里写点击按钮回调函数
+                        }
+                    }
+                }
+            });
+            $('#tb_roles').bootstrapTable('refresh');  //刷新列表
+        } else {
+            $.alert({
+                title: '提示',
+                content: '删除失败！',
+                type:'red',             //一般危险操作用red,保存成功操作green
+                buttons: {              //定义按钮
+                    confirm: {
+                        text: '确认',
+                        btnClass: 'btn-primary',
+                        action: function(){ //这里写点击按钮回调函数
+                        }
+                    }
+                }
+            });
+        }
+    }, 'json');
+}
+
+/**表单提交事件*/
+function submitHandler() {
+    debugger;
+    var bootstrapValidator = $("#infoForm").data('bootstrapValidator');
+    if(bootstrapValidator.validate().isValid()){
+        var createUrl = "http://localhost:8082/addChuanCai.action"
+        debugger;
+        $.post(createUrl, $("#infoForm").serialize(), function(data) {
+            debugger;
+            console.log(data);
+            if (data == true) {
+                debugger;
+                $.alert({
+                    title: '提示',
+                    content: '保存成功！',
+                    type:'green',             //一般危险操作用red,保存成功操作green
+                    buttons: {              //定义按钮
+                        confirm: {
+                            text: '确认',
+                            btnClass: 'btn-primary',
+                            action: function(){ //这里写点击按钮回调函数
+                            }
+                        }
+                    }
+                });
+                $('#myModal').modal('hide');
+                $("#tb_roles").bootstrapTable('refresh');
+                $("#infoForm").data('bootstrapValidator').resetForm();
+            } else if (data == repeat){
+                debugger;
+                $.alert({
+                    title: '提示',
+                    content: '店名重复！',
+                    type:'red',             //一般危险操作用red,保存成功操作green
+                    buttons: {              //定义按钮
+                        confirm: {
+                            text: '确认',
+                            btnClass: 'btn-primary',
+                            action: function(){ //这里写点击按钮回调函数
+                            }
+                        }
+                    }
+                });
+            }else {
+                debugger;
+                $.alert({
+                    title: '提示',
+                    content: '保存失败！',
+                    type:'red',             //一般危险操作用red,保存成功操作green
+                    buttons: {              //定义按钮
+                        confirm: {
+                            text: '确认',
+                            btnClass: 'btn-primary',
+                            action: function(){ //这里写点击按钮回调函数
+                            }
+                        }
+                    }
+                });
+            }
+        }, 'json');
+    } else {
+        $.alert({
+            title: '提示',
+            content: '请按照相关提示修改！',
+            type:'red',             //一般危险操作用red,保存成功操作green
+            buttons: {              //定义按钮
+                confirm: {
+                    text: '确认',
+                    btnClass: 'btn-primary',
+                    action: function(){ //这里写点击按钮回调函数
+                    }
+                }
+            }
+        });
+    }
+}
+/**日期格式化*/
+function dateFormatter(value) {
+    if(value!=null){
+        value = new Date(parseInt(value)).format("yyyy-MM-dd");
+    }
+    return value;
+}
+
+</script>
+
+
+<div class="main-content">
+    <footer>
+        <hr>
+        <p class="pull-right">Kakurry <a href="index.html" title="工作室" target="_blank">工作室</a></p>
+        <p>© 2014 <a href="#" target="_blank">留香阁餐厅管理系统</a></p>
+    </footer>
+</div>
+</div>
+</div>
+
+
+<script type="text/javascript">
+    $("[rel=tooltip]").tooltip();
+    $(function() {
+        $('.demo-cancel-click').click(function(){return false;});
+    });
+</script>
+
+
+</body></html>
