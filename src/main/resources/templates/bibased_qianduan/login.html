@@ -1,0 +1,600 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>登陆页面</title>
+<link href="../../static/bibased_qianduan/css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
+<link href="../../static/bibased_qianduan/css/style1.css" rel="stylesheet" type="text/css" media="all" />
+<link rel="stylesheet" href="../../static/bibased_qianduan/yanzhengma/jquery.idcode.css" />
+<link rel="stylesheet" href="../../static/bibased_qianduan/bootstrapValidator/css/bootstrapValidator.min.css" />
+<link rel="stylesheet" href="../../static/bibased_qianduan/bootstrapValidator/jquery-confirm/css/jquery-confirm.css" />
+<link rel="stylesheet" href="../../static/bibased_qianduan/bootstrapValidator/jquery-confirm/css/global1.css" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<script src="../../static/bibased_qianduan/js/jquery-1.11.1.min.js"></script>
+<script src="../../static/bibased_qianduan/js/bootstrap.js"></script>
+<script src="../../static/bibased_qianduan/js/responsiveslides.min.js"></script>
+<script src="../../static/bibased_qianduan/yanzhengma/jquery.idcode.js"></script>
+<script src="../../static/bibased_qianduan/bootstrapValidator/js/bootstrapValidator.min.js"></script>
+<script src="../../static/bibased_qianduan/bootstrapValidator/jquery-confirm/js/jquery-confirm.js"></script>
+ <script>
+    $(function () {
+      $("#slider").responsiveSlides({
+      	auto: true,
+      	nav: true,
+      	speed: 500,
+        namespace: "callbacks",
+        pager: true
+      });
+    });
+  </script>
+<style type="text/css">
+/*密码强度*/
+.pw-strength {clear: both;position: relative;width: 180px;}
+.pw-bar{background: url(../../static/bibased_qianduan/login/images/pwd-1.png) no-repeat;height: 14px;overflow: hidden;width: 179px;}
+.pw-bar-on{background:  url(../../static/bibased_qianduan/login/images/pwd-2.png) no-repeat;
+            width:0px; height:14px;position: absolute;top: 1px;left: 2px;
+            transition: width .5s ease-in;-moz-transition: width .5s ease-in;-webkit-transition: width .5s ease-in;-o-transition: width .5s ease-in;}
+.pw-weak .pw-defule{ width:0px;}
+.pw-weak .pw-bar-on {width: 60px;}
+.pw-medium .pw-bar-on {width: 120px;}
+.pw-strong .pw-bar-on {width: 179px;}
+.pw-txt {padding-top: 2px;width: 180px;overflow: hidden;}
+.pw-txt span {color: #707070;float: left;font-size: 12px;text-align: center;width: 58px;}
+a{
+    text-decoration:none;
+}
+.a-tag{
+    position: relative;
+    display: block;
+    height: 48px;
+    border: 1px #c2c2c2 solid;
+    text-align: center;
+    line-height: 48px;
+    color: #c2c2c2;
+    border-radius: 5px;
+    background-color: #fff;
+}
+.blue-border{
+    border:1px #03a9f4 solid;
+    color: #03a9f4;
+}
+
+.a-tag:hover{
+    background-color: #aaa;
+    color: #fff;
+}
+.blue-border:hover{
+    background-color: #03a9f4;
+    color: #fff;
+}
+@font-face {font-family: 'iconfont';
+    src: url('../../static/bibased_qianduan/login/font/iconfont.eot'); /* IE9*/
+    src: url('../../static/bibased_qianduan/login/font/iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../../static/bibased_qianduan/login/font/iconfont.woff') format('woff'), /* chrome、firefox */
+    url('../../static/bibased_qianduan/login/font/iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+    url('../../static/bibased_qianduan/login/font/iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+.tran{
+    transition:all 0.3s ease-out;
+    -webkit-transition:all 0.3s ease-out;
+    -moz-transition:all 0.3s ease-out;
+    -o-transition:all 0.3s ease-out;
+}
+.iconfont {
+    font-family:"iconfont" !important;
+    font-size:16px;
+    font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+</style>
+
+</head>
+<body>
+<!--header-->
+<div class="header">
+    <div class="container">
+        <div class="header-top">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <div class="navbar-brand">
+                            <h1><a href="index.html">留香阁餐厅</a></h1>
+                        </div>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="index.html">首页 <span class="sr-only">(current)</span></a></li>
+                            <li><a href="about.html">关于我们</a></li>
+                            <li><a href="services.html">服务</a></li>
+                            <li><a href="dianpu.html">店铺</a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">菜系 <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="chuancai.html">川菜</a></li>
+                                    <li><a href="xiangcai.html">湘菜</a></li>
+                                    <li><a href="yuecai.html">粤菜</a></li>
+                                    <li><a href="frenchcai.html">法国菜</a></li>
+                                    <li><a href="japancai.html">日本菜</a></li>
+                                    <li><a href="koreacai.html">韩国菜</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="dianping.html">点评</a></li>
+                            <li><a href="gallery.html">美食文化</a></li>
+                            <li><a href="jiaotong.html">周围交通</a></li>
+                            <li><a href="liuyanban.html">留言板</a></li>
+                            <li><a href="login.html">登录</a></li>
+                        </ul>
+
+                    </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+            </nav>
+
+					</div>
+		</div>
+</div>
+<!--header-->
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12" style="height: 20px;"></div>
+    </div>
+</div>
+<div class="container-fluid" style="background: url(images/login.jpg);background-size: 100% 100%;margin: 0px;padding: 0px;">
+    <div class="row">
+        <div class="col-md-3 col-lg-3 col-xs-3 col-sm-3"></div>
+        <div class="col-md-6 col-lg-6 col-xs-6 col-sm-6" style="border: 1px solid #ebebeb; background: url(images/login.jpg);background-size: 100% 100%;">
+            <from id="login" name="login" method="POST">
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12" style="height: 48px;background-color:gainsboro;font-size: 130%;text-align: center;vertical-align: middle;line-height: 48px;">留香阁餐厅登录界面</div>
+                </div>
+                <div class="row">
+                    <label for="username" class="col-md-3 col-lg-3 col-xs-3 col-sm-3 control-label" style="text-align: right;vertical-align: middle;line-height: 48px; font-size: 130%;"><span style="color:red; font-weight:bold;">*</span>用户名:</label>
+                    <div class="col-md-9 col-lg-9 col-xs-9 col-sm-9">
+                        <input type="text" class="form-control" name="username" id="username" placeholder="请输入用户名" style="height: 48px;" aria-describedby="sizing-addon2" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12" style="height: 10px"></div>
+                </div>
+                <div class="row">
+                    <label for="password" class="col-md-3 col-lg-3 col-xs-3 col-sm-3 control-label" style="text-align: right;vertical-align: middle;line-height: 48px; font-size: 130%;"><span style="color:red; font-weight:bold;">*</span>密码:</label>
+                    <div class="col-md-9 col-lg-9 col-xs-9 col-sm-9">
+                        <input type="password" class="form-control" name="password" id="password" placeholder="请输入密码" size="30" maxlength="30" style="height: 48px;" aria-describedby="sizing-addon2" />
+                    </div>
+                </div>
+               <!-- <div class="row">
+                    <label class="col-md-3 col-lg-3 col-xs-3 col-sm-3 control-label" style="text-align: right;">密码强度:</label>
+                    <div class="col-md-9 col-lg-9 col-xs-9 col-sm-9">
+                        <table>
+                            <tr>
+                                <td id="level" class="pw-strength">
+                                    <div class="pw-bar"></div>
+                                    <div class="pw-bar-on"></div>
+                                    <div class="pw-txt">
+                                        <span>弱</span>
+                                        <span>中</span>
+                                        <span>强</span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <label for="passwordagin" class="col-md-3 col-lg-3 col-xs-3 col-sm-3 control-label" style="text-align: right;vertical-align: middle;line-height: 48px; font-size: 130%;"><span style="color:red; font-weight:bold;">*</span>验证密码:</label>
+                    <div class="col-md-9 col-lg-9 col-xs-9 col-sm-9">
+                        <input type="text" class="form-control" name="passwordagin" id="passwordagin" placeholder="请再次输入密码" style="height: 48px;" size="30" maxlength="30" aria-describedby="sizing-addon2" />
+                    </div>
+                </div>-->
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12" style="height: 10px"></div>
+                </div>
+                <div class="row">
+                    <label for="Txtidcode" class="col-md-3 col-lg-3 col-xs-3 col-sm-3 control-label" style="text-align: right;vertical-align: middle;line-height: 48px; font-size: 130%;"><span style="color:red; font-weight:bold;">*</span>验证码:</label>
+                    <div class="col-md-4 col-lg-4 col-xs-4 col-sm-4">
+                        <input type="text" class="form-control txtVerification" name="Txtidcode" id="Txtidcode" placeholder="请输入验证码" style="height: 48px;" size="30" maxlength="30" aria-describedby="sizing-addon2" />
+                    </div>
+                    <div class="col-md-5 col-lg-5 col-xs-5 col-sm-5">
+                        <span id="idcode" style="height: 48px;vertical-align: middle;line-height: 48px;"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12" style="height: 10px"></div>
+                </div>
+            </from>
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12" id="btns">
+                        <a href="javascript:;" style="text-decoration:none;font-size: 130%;" class="move-login a-tag tran blue-border">登&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;录</a>
+                    </div>
+                </div>
+            <script type="text/javascript">
+                $(document).ready(function(){
+                    //表单验证配置
+                    $('#login').bootstrapValidator({
+                        message: '不可用的值',
+                        feedbackIcons: {
+                            valid: 'glyphicon glyphicon-ok',
+                            invalid: 'glyphicon glyphicon-remove',
+                            validating: 'glyphicon glyphicon-refresh'
+                        },
+                        fields: {
+                            username: {
+                                validators: {
+                                    notEmpty: {
+                                        message: '请输入用户名'
+                                    }
+                                }
+                            },
+                            password : {
+                                validators : {
+                                    notEmpty : {
+                                        message : '请输入密码'
+                                    }
+                                }
+                            },
+                            Txtidcode: {
+                                validators: {
+                                    notEmpty: {
+                                        message: '请输入验证码'
+                                    }
+                                }
+                            }
+                        }
+                    });
+                });
+            </script>
+
+                <script>
+                   /* 验证码后面的换一张*/
+                    $.idcode.setCode();
+                    $("#username").blur(function(){
+                        debugger;
+                        var value = $("#username").val();
+                        if(value == ""){
+                            $.alert({
+                                title : '提示',
+                                content : '必填项不可为空！',
+                                type : 'red', //一般危险操作用red,保存成功操作green
+                                buttons : { //定义按钮
+                                    confirm : {
+                                        text : '确认',
+                                        btnClass : 'btn-primary',
+                                        action : function() { //这里写点击按钮回调函数
+
+                                        }
+                                    }
+                                }
+                            });
+                        }
+                    });
+                   $("#password").blur(function(){
+                       debugger;
+                       var value = $("#password").val();
+                       if(value == ""){
+                           $.alert({
+                               title : '提示',
+                               content : '必填项不可为空！',
+                               type : 'red', //一般危险操作用red,保存成功操作green
+                               buttons : { //定义按钮
+                                   confirm : {
+                                       text : '确认',
+                                       btnClass : 'btn-primary',
+                                       action : function() { //这里写点击按钮回调函数
+
+                                       }
+                                   }
+                               }
+                           });
+                       }else{
+                           if(value.length < 6){
+                               $.alert({
+                                   title : '提示',
+                                   content : '密码不能小于6位！',
+                                   type : 'red', //一般危险操作用red,保存成功操作green
+                                   buttons : { //定义按钮
+                                       confirm : {
+                                           text : '确认',
+                                           btnClass : 'btn-primary',
+                                           action : function() { //这里写点击按钮回调函数
+
+                                           }
+                                       }
+                                   }
+                               });
+                           }
+                       }
+                   });
+                  /* $("#passwordagin").blur(function(){
+                       debugger;
+                       var value = $("#passwordagin").val();
+                       var password = $("#password").val();
+                       if(value == ""){
+                           $.alert({
+                               title : '提示',
+                               content : '必填项不可为空！',
+                               type : 'red', //一般危险操作用red,保存成功操作green
+                               buttons : { //定义按钮
+                                   confirm : {
+                                       text : '确认',
+                                       btnClass : 'btn-primary',
+                                       action : function() { //这里写点击按钮回调函数
+
+                                       }
+                                   }
+                               }
+                           });
+                       }else{
+                           if(value.length < 6){
+                               $.alert({
+                                   title : '提示',
+                                   content : '密码不能小于6位！',
+                                   type : 'red', //一般危险操作用red,保存成功操作green
+                                   buttons : { //定义按钮
+                                       confirm : {
+                                           text : '确认',
+                                           btnClass : 'btn-primary',
+                                           action : function() { //这里写点击按钮回调函数
+
+                                           }
+                                       }
+                                   }
+                               });
+                           }else{
+                               if(value != password){
+                                   $.alert({
+                                       title : '提示',
+                                       content : '两次输入的密码不同，请重新输入！！',
+                                       type : 'red', //一般危险操作用red,保存成功操作green
+                                       buttons : { //定义按钮
+                                           confirm : {
+                                               text : '确认',
+                                               btnClass : 'btn-primary',
+                                               action : function() { //这里写点击按钮回调函数
+
+                                               }
+                                           }
+                                       }
+                                   });
+                               }
+                           }
+                       }
+                   });*/
+                /*   $("#Txtidcode").blur(function(){
+                       debugger;
+                       var value = $("#Txtidcode").val();
+                       if(value == ""){
+                           $.alert({
+                               title : '提示',
+                               content : '必填项不可为空！',
+                               type : 'red', //一般危险操作用red,保存成功操作green
+                               buttons : { //定义按钮
+                                   confirm : {
+                                       text : '确认',
+                                       btnClass : 'btn-primary',
+                                       action : function() { //这里写点击按钮回调函数
+
+                                       }
+                                   }
+                               }
+                           });
+                       }
+                   });*/
+                    $("#btns").click(function (){
+                        debugger;
+                        var bootstrapValidator =$("#login").data('bootstrapValidator');
+                        var IsBy = $.idcode.validateCode();
+/*                        var password1 = $("#password").val();
+                        var password2 = $("#passwordagin").val();*/
+                       /* alert(IsBy);
+                        console.log(IsBy);*/
+                        if (bootstrapValidator.validate().isValid()){
+                           if(IsBy){
+                               $.post("http://localhost:8082/login.action", {"username":$("#username").val(),"password":$("#password").val()}, function(data) {
+                                   debugger;
+                                   console.log(data);
+                                   if(data == true){
+                                       debugger;
+                                       $.alert({
+                                           title : '提示',
+                                           content : '登录成功！',
+                                           type : 'green', //一般危险操作用red,保存成功操作green
+                                           buttons : { //定义按钮
+                                               confirm : {
+                                                   text : '确认',
+                                                   btnClass : 'btn-primary',
+                                                   action : function() { //这里写点击按钮回调函数
+                                                       window.location.href="index.html";
+                                                   }
+                                               }
+                                           }
+                                       });
+                                   }else{
+                                       $.alert({
+                                           title : '提示',
+                                           content : '登录失败，请检查你的账号和密码是否输入正确！',
+                                           type : 'red', //一般危险操作用red,保存成功操作green
+                                           buttons : { //定义按钮
+                                               confirm : {
+                                                   text : '确认',
+                                                   btnClass : 'btn-primary',
+                                                   action : function() { //这里写点击按钮回调函数
+
+                                                   }
+                                               }
+                                           }
+                                       });
+                                   }
+                               },'json');
+                           }else{
+                               $.alert({
+                                   title : '提示',
+                                   content : '验证码填写错误！',
+                                   type : 'red', //一般危险操作用red,保存成功操作green
+                                   buttons : { //定义按钮
+                                       confirm : {
+                                           text : '确认',
+                                           btnClass : 'btn-primary',
+                                           action : function() { //这里写点击按钮回调函数
+
+                                           }
+                                       }
+                                   }
+                               });
+                           }
+                        }else {
+                            $.alert({
+                                title : '提示',
+                                content : '请按照规定填写完毕！',
+                                type : 'red', //一般危险操作用red,保存成功操作green
+                                buttons : { //定义按钮
+                                    confirm : {
+                                        text : '确认',
+                                        btnClass : 'btn-primary',
+                                        action : function() { //这里写点击按钮回调函数
+
+                                        }
+                                    }
+                                }
+                            });
+                        }
+
+                    });
+                </script>
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12" style="height: 10px"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12" id="rest">
+                        <a href="javascript:;" style="text-decoration:none;font-size: 130%;" class="move-login a-tag tran blue-border">重&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;置</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12" style="height: 10px"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12" id="zhuce">
+                        <a href="javascript:;" style="text-decoration:none;font-size: 130%;" class="move-login a-tag tran blue-border">还没有帐号？免费注册<i class="iconfont tran">&#xe606;</i></a>
+                    </div>
+                </div>
+            <script type="text/javascript">
+                $("#rest").click(function (){
+                    debugger;
+                    $("#username").val("");
+                    $("#password").val("");
+                    $("#passwordagin").val("");
+                    $("#Txtidcode").val("");
+                    $("#login").data('bootstrapValidator').resetForm();
+                });
+                $("#zhuce").click(function (){
+                    window.location.href="zhuce.html";
+                });
+            </script>
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12" style="height: 10px"></div>
+                </div>
+        </div>
+        <div class="col-md-3 col-lg-3 col-xs-3 col-sm-3"></div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12" style="height: 20px"></div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function(){
+        $('#password').keyup(function () {
+            debugger;
+            var strongRegex = new RegExp("^(?=.{8,})(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\\W).*$", "g");
+            var mediumRegex = new RegExp("^(?=.{7,})(((?=.*[A-Z])(?=.*[a-z]))|((?=.*[A-Z])(?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9]))).*$", "g");
+            var enoughRegex = new RegExp("(?=.{6,}).*", "g");
+
+            if (false == enoughRegex.test($(this).val())) {
+                $('#level').removeClass('pw-weak');
+                $('#level').removeClass('pw-medium');
+                $('#level').removeClass('pw-strong');
+                $('#level').addClass(' pw-defule');
+                //密码小于六位的时候，密码强度图片都为灰色
+            }
+            else if (strongRegex.test($(this).val())) {
+                $('#level').removeClass('pw-weak');
+                $('#level').removeClass('pw-medium');
+                $('#level').removeClass('pw-strong');
+                $('#level').addClass(' pw-strong');
+                //密码为八位及以上并且字母数字特殊字符三项都包括,强度最强
+            }
+            else if (mediumRegex.test($(this).val())) {
+                $('#level').removeClass('pw-weak');
+                $('#level').removeClass('pw-medium');
+                $('#level').removeClass('pw-strong');
+                $('#level').addClass(' pw-medium');
+                //密码为七位及以上并且字母、数字、特殊字符三项中有两项，强度是中等
+            }
+            else {
+                $('#level').removeClass('pw-weak');
+                $('#level').removeClass('pw-medium');
+                $('#level').removeClass('pw-strong');
+                $('#level').addClass('pw-weak');
+                //如果密码为6为及以下，就算字母、数字、特殊字符三项都包括，强度也是弱的
+            }
+            return true;
+        });
+    })
+</script>
+    <!--GET IN TOUCH-->
+    <div class="touch-section">
+        <div class="container">
+            <h3>联系我们</h3>
+            <div class="touch-grids">
+                <div class="col-md-4 touch-grid">
+                    <h4>地址</h4>
+                    <h5>辽宁省鞍山市</h5>
+                    <p>鞍山市长甸街道</p>
+                    <p>鞍山师范学院对面</p>
+                    <p>留香阁餐厅</p>
+                </div>
+                <div class="col-md-4 touch-grid">
+                    <h4>咨询</h4>
+                    <h5>餐饮咨询</h5>
+                    <p>电话 : +182 4226 3022</p>
+                    <p>传真 : +182 4226 3022</p>
+                    <p>电子信箱 : <a href="mailto:example@mail.com"> 1641165306@qq.com</a></p>
+                </div>
+                <div class="col-md-4 touch-grid">
+                    <h4>订餐</h4>
+                    <h5>了解详情</h5>
+                    <p>电话 : +182 4226 3022</p>
+                    <p>传真 : +182 4226 3022</p>
+                    <p>电子信箱 : <a href="mailto:example@mail.com"> 1641165306@qq.com</a></p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <!--GET IN TOUCH-->
+</div>
+<!--footer-->
+<div class="footer-section">
+    <div class="container">
+        <div class="footer-top">
+            <p>留香阁餐厅 &copy; 2015.不一样的我们给你们不一样的美食享受！ <a href="http://www.cssmoban.com/" target="_blank" title="留香阁全体工作人员">Kakurry</a> - Give you a different gourmet feast! <a href="http://www.cssmoban.com/" title="留香阁全体工作人员" target="_blank">Kakurry</a></p>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

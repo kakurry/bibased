@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>地图</title>
+    <link href="../../static/bibased_qianduan/css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
+    <link rel="stylesheet" href="http://cache.amap.com/lbs/static/main1119.css"/>
+    <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.4.5&key=a2671d95d2447f5ac7e81d1e8eeac41b&plugin"></script>
+    <script type="text/javascript" src="http://cache.amap.com/lbs/static/addToolbar.js"></script>
+    <script src="../../static/bibased_qianduan/js/jquery-1.11.1.min.js"></script>
+    <script src="../../static/bibased_qianduan/js/bootstrap.js"></script>
+</head>
+<body>
+<div id="container"></div>
+<div id="tip" style="border: 1px solid #ffffff"><button type="button" class="btn btn-info btn-lg"><a href="jiaotong.html">返回</a></button></div>
+<div id="tip1" style="border: 1px solid #ffffff;position: fixed;top: 80px;right: 20px;"><button type="button" class="btn btn-info btn-lg"><a href="https://www.amap.com/">导航</a></button></div>
+<script type="text/javascript">
+    var map, route, marker;
+    //基本地图加载
+    map = new AMap.Map("container", {
+        resizeEnable: true,
+        center:[122.996061, 41.076407],
+        zoom:11
+    });
+    //绘制初始路径
+    var path = [];
+    path.push([122.985224, 41.112905]);
+    path.push([122.9775, 41.094732]);
+    path.push([122.996061, 41.076407]);
+    map.plugin("AMap.DragRoute", function() {
+        route = new AMap.DragRoute(map, path, AMap.DrivingPolicy.LEAST_FEE); //构造拖拽导航类
+        route.search(); //查询导航路径并开启拖拽导航
+    });
+</script>
+</body>
+</html>

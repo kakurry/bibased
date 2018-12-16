@@ -1,0 +1,565 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>点评页面</title>
+    <link href="../../static/bibased_qianduan/css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
+    <link href="../../static/bibased_qianduan/css/style1.css" rel="stylesheet" type="text/css" media="all" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <script src="../../static/bibased_qianduan/js/jquery-1.11.1.min.js"></script>
+    <script src="../../static/bibased_qianduan/js/bootstrap.js"></script>
+    <script src="../../static/bibased_qianduan/js/responsiveslides.min.js"></script>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <script type="text/javascript" charset="utf-8" src="../../static/bibased_qianduan/utf8-jsp/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../../static/bibased_qianduan/utf8-jsp/ueditor.all.min.js"> </script>
+    <!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
+    <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
+    <script type="text/javascript" charset="utf-8" src="../../static/bibased_qianduan/utf8-jsp/lang/zh-cn/zh-cn.js"></script>
+
+    <script>
+        $(function () {
+            $("#slider").responsiveSlides({
+                auto: true,
+                nav: true,
+                speed: 500,
+                namespace: "callbacks",
+                pager: true
+            });
+        });
+    </script>
+</head>
+<body>
+<!--header-->
+<div class="header">
+    <div class="container">
+        <div class="header-top">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <div class="navbar-brand">
+                            <h1><a href="index.html">留香阁餐厅</a></h1>
+                        </div>
+                    </div>
+                    <div style="position: absolute;right: 0px;top: -5px;font-size: 120%;color: darkorange" id="qianlinshi"></div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="position: relative;">
+                        <ul class="nav navbar-nav" >
+                            <li class="active"><a href="index.html">首页 <span class="sr-only">(current)</span></a></li>
+                            <li><a href="about.html">关于我们</a></li>
+                            <li><a href="services.html">服务</a></li>
+                            <li><a href="dianpu.html">店铺</a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">菜系 <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="chuancai.html">川菜</a></li>
+                                    <li><a href="xiangcai.html">湘菜</a></li>
+                                    <li><a href="yuecai.html">粤菜</a></li>
+                                    <li><a href="frenchcai.html">法国菜</a></li>
+                                    <li><a href="japancai.html">日本菜</a></li>
+                                    <li><a href="koreacai.html">韩国菜</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="dianping.html">点评</a></li>
+                            <li><a href="gallery.html">美食文化</a></li>
+                            <li><a href="jiaotong.html">周围交通</a></li>
+                            <li><a href="liuyanban.html">留言板</a></li>
+                            <li id="dong"><a href="login.html">登录</a></li>
+                        </ul>
+
+                    </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+            </nav>
+
+        </div>
+    </div>
+</div>
+<!--header-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6col-lg-6 col-xs-6 col-sm-6">
+            <h1 style="text-align: center;"><b>请输入点评内容</b></h1>
+            <script id="editor" type="text/plain" style="height:220px;"></script>
+        </div>
+        <div class="col-md-6col-lg-6 col-xs-6 col-sm-6">
+            <div class="row">
+                <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12" style="height: 100px"></div>
+            </div>
+            <div class="row">
+                <label for="xiala1" class="col-md-2 col-lg-2 col-xs-2 col-sm-2 control-label" style="text-align: center;vertical-align: middle;height: 34px;line-height:34px;font-size: 110%;">国家：</label>
+                <div class="col-md-2 col-lg-2 col-xs-2 col-sm-2">
+                    <select id="xiala1" name="xiala1" class="form-control" onchange="xiala1()">
+                        <option value="">请选择</option>
+                        <option value="中国">中国</option>
+                        <option value="日本">日本</option>
+                        <option value="法国">法国</option>
+                        <option value="韩国">韩国</option>
+                        <option value="其他">其他</option>
+                    </select>
+                </div>
+                <label for="xiala2" class="col-md-2 col-lg-2 col-xs-2 col-sm-2 control-label"  style="text-align: center;vertical-align: middle;height: 34px;line-height:34px;font-size: 110%;">种类：</label>
+                <div class="col-md-2 col-lg-2 col-xs-2 col-sm-2">
+                    <select id="xiala2" name="xiala2" class="form-control" onchange="xiala2()">
+                        <option value="">请选择</option>
+                        <!-- <option value="0">插入1</option>
+                        <option value="0">插入2</option> -->
+                    </select>
+                </div>
+                <label for="xiala3" class="col-md-2 col-lg-2 col-xs-2 col-sm-2 control-label"  style="text-align: center;vertical-align: middle;height: 34px;line-height:34px;font-size: 110%;">菜名：</label>
+                <div class="col-md-2 col-lg-2 col-xs-2 col-sm-2">
+                    <select id="xiala3" name="xiala3" class="form-control" onchange="xiala3()">
+                        <option value="">请选择</option>
+                        <!--  <option value="0">插入1</option>
+                        <option value="0">插入2</option> -->
+                    </select>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12" style="height: 60px"></div>
+                </div>
+                <div class="row">
+                    <label for="dianpu" class="col-md-2 col-lg-2 col-xs-2 col-sm-2 control-label"  style="text-align: center;vertical-align: middle;height: 34px;line-height:34px;font-size: 110%;">店铺：</label>
+                    <div class="col-md-4 col-lg-4 col-xs-4 col-sm-4">
+                        <select id="dianpu" name="dianpu" class="form-control" onchange="dianpu()">
+                            <option value="">请选择</option>
+                           <!-- <option value="非常好吃">非常好吃</option>
+                            <option value="好吃">好吃</option>
+                            <option value="一般">一般</option>
+                            <option value="不好吃">不好吃</option>-->
+                        </select>
+                    </div>
+                    <label for="huanjing" class="col-md-2 col-lg-2 col-xs-2 col-sm-2 control-label"  style="text-align: center;vertical-align: middle;height: 34px;line-height:34px;font-size: 110%;">环境：</label>
+                    <div class="col-md-4 col-lg-4 col-xs-4 col-sm-4">
+                        <select id="huanjing" name="huanjing" class="form-control" onchange="huanjing()">
+                            <option value="">请选择</option>
+                            <option value="非常好">非常好</option>
+                            <option value="好">好</option>
+                            <option value="一版">一版</option>
+                            <option value="不好">不好</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12" style="height: 60px"></div>
+                </div>
+                <div class="row">
+                    <label for="weidao" class="col-md-2 col-lg-2 col-xs-2 col-sm-2 control-label"  style="text-align: center;vertical-align: middle;height: 34px;line-height:34px;font-size: 110%;">味道：</label>
+                    <div class="col-md-4 col-lg-4 col-xs-4 col-sm-4">
+                        <select id="weidao" name="weidao" class="form-control" onchange="weidao()">
+                            <option value="">请选择</option>
+                            <option value="非常好吃">非常好吃</option>
+                            <option value="好吃">好吃</option>
+                            <option value="一般">一般</option>
+                            <option value="不好吃">不好吃</option>
+                        </select>
+                    </div>
+                    <label for="service" class="col-md-2 col-lg-2 col-xs-2 col-sm-2 control-label"  style="text-align: center;vertical-align: middle;height: 34px;line-height:34px;font-size: 110%;">服务态度：</label>
+                    <div class="col-md-4 col-lg-4 col-xs-4 col-sm-4">
+                        <select id="service" name="service" class="form-control" onchange="service()">
+                            <option value="">请选择</option>
+                            <option value="非常好">非常好</option>
+                            <option value="好">好</option>
+                            <option value="一版">一版</option>
+                            <option value="不好">不好</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12" style="height: 10px"></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-5 col-lg-5 col-xs-5 col-sm-5"></div>
+        <div class="col-md-3 col-lg-3 col-xs-3 col-sm-3">
+            <button type="button" class="btn btn-info" style="width: 150px;height: 50px;" onclick="getContent()">保存</button>
+        </div>
+        <div class="col-md-4 col-lg-4 col-xs-4 col-sm-4"></div>
+    </div>
+</div>
+<!--<div id="btns">
+    <div>
+        <button onclick="getAllHtml()">获得整个html的内容</button>
+        <button onclick="getContent()">获得内容</button>
+        <button onclick="setContent()">写入内容</button>
+        <button onclick="setContent(true)">追加内容</button>
+        <button onclick="getContentTxt()">获得纯文本</button>
+        <button onclick="getPlainTxt()">获得带格式的纯文本</button>
+        <button onclick="hasContent()">判断是否有内容</button>
+        <button onclick="setFocus()">使编辑器获得焦点</button>
+        <button onmousedown="isFocus(event)">编辑器是否获得焦点</button>
+        <button onmousedown="setblur(event)" >编辑器失去焦点</button>
+
+    </div>
+    <div>
+        <button onclick="getText()">获得当前选中的文本</button>
+        <button onclick="insertHtml()">插入给定的内容</button>
+        <button id="enable" onclick="setEnabled()">可以编辑</button>
+        <button onclick="setDisabled()">不可编辑</button>
+        <button onclick=" UE.getEditor('editor').setHide()">隐藏编辑器</button>
+        <button onclick=" UE.getEditor('editor').setShow()">显示编辑器</button>
+        <button onclick=" UE.getEditor('editor').setHeight(300)">设置高度为300默认关闭了自动长高</button>
+    </div>
+
+    <div>
+        <button onclick="getLocalData()" >获取草稿箱内容</button>
+        <button onclick="clearLocalData()" >清空草稿箱</button>
+    </div>
+
+</div>
+<div>
+    <button onclick="createEditor()">
+        创建编辑器</button>
+    <button onclick="deleteEditor()">
+        删除编辑器</button>
+</div>-->
+<script type="text/javascript">
+    var qianduanlinshiuser = '';
+    $(document).ready(function() {
+        $.post("http://localhost:8082/dongtaiusername.action", function (data) {
+            debugger;
+            if(data != ""){
+                var htmlstr = "<b> <span>欢迎"+data.username+"用户</span>"+"<a href='' style='text-decoration:none;color: darkorange;' onclick='zhuxiao()'>【注销】</a></b>";
+                $("#qianlinshi").append(htmlstr);
+                $("#dong").hide();
+                qianduanlinshiuser = data.username;
+                debugger;
+                ue.addListener("ready", function() {
+                    //必须这么写，等待编辑器加载完成，否则不能动态加载数据，会报错如下图。
+                    $.post("http://localhost:8082/chazhao.action",{"people":qianduanlinshiuser},function(data){
+                        if(data != ''){
+                            UE.getEditor('editor').setContent(data.content);
+                        }
+                    },'json');
+                });
+            }else{
+                $("#qianlinshi").hide();
+                $("#dong").show();
+            }
+        });
+
+        $.post("http://localhost:8082/dianpingDianPuquery.action", function (data) {
+            if(data != ""){
+                for(var i = 0;i < data.length;i++){
+                    var htmlstr = "<option value=\""+data[i].dianming+"\">"+data[i].dianming+"</option>";
+                    $("#dianpu").append(htmlstr);
+                }
+            }
+        });
+
+    });
+</script>
+<script type="text/javascript">
+    function zhuxiao(){
+        alert("注销成功！");
+        $.post("http://localhost:8082/zhuxiao.action", function (data) {
+           if(data == true){
+               qianduanlinshiuser = "";
+               window.location.href="login.html";
+           }
+        });
+    }
+
+    function xiala1(){
+        if($("#xiala1").val()!=""){
+            var a1 = $("#xiala1").val();
+            var a11= "国家："+a1;
+           /* $("#xiala2").empty();*/
+            UE.getEditor('editor').execCommand('insertHtml', a11);
+            $.post("http://localhost:8082/zhongleiFUquery.action",{"lishu":a1} ,function (data) {
+                if(data != ""){
+                    for(var i = 0;i < data.length;i++){
+                        var htmlstr = "<option value=\""+data[i].caixi+"\">"+data[i].caixi+"</option>";
+                        $("#xiala2").append(htmlstr);
+                    }
+                }
+            });
+        }
+    }
+    function xiala2(){
+        if($("#xiala1").val()!=""){
+            var a1 = $("#xiala2").val();
+            var a11= "菜系种类："+a1;
+            $("#xiala3").empty();
+            UE.getEditor('editor').execCommand('insertHtml', a11);
+            if($("#xiala2").val() == "川菜"){
+                $.post("http://localhost:8082/caimingFUquery.action",{"caixi":a1} ,function (data) {
+                    if(data != ""){
+                        for(var i = 0;i < data.length;i++){
+                            var htmlstr = "<option value=\""+data[i].caiming+"\">"+data[i].caiming+"</option>";
+                            $("#xiala3").append(htmlstr);
+                        }
+                    }
+                });
+            }else if($("#xiala2").val() == "粤菜"){
+                $.post("http://localhost:8082/caimingYUEquery.action",{"caixi":a1} ,function (data) {
+                    if(data != ""){
+                        for(var i = 0;i < data.length;i++){
+                            var htmlstr = "<option value=\""+data[i].caiming+"\">"+data[i].caiming+"</option>";
+                            $("#xiala3").append(htmlstr);
+                        }
+                    }
+                });
+            }else if($("#xiala2").val() == "湘菜"){
+                $.post("http://localhost:8082/caimingXIANGquery.action",{"caixi":a1} ,function (data) {
+                    if(data != ""){
+                        for(var i = 0;i < data.length;i++){
+                            var htmlstr = "<option value=\""+data[i].caiming+"\">"+data[i].caiming+"</option>";
+                            $("#xiala3").append(htmlstr);
+                        }
+                    }
+                });
+            }else if($("#xiala2").val() == "韩国菜"){
+                $.post("http://localhost:8082/caimingKOREAquery.action",{"caixi":a1} ,function (data) {
+                    if(data != ""){
+                        for(var i = 0;i < data.length;i++){
+                            var htmlstr = "<option value=\""+data[i].caiming+"\">"+data[i].caiming+"</option>";
+                            $("#xiala3").append(htmlstr);
+                        }
+                    }
+                });
+            }else if($("#xiala2").val() == "日本菜"){
+                $.post("http://localhost:8082/caimingJAPANquery.action",{"caixi":a1} ,function (data) {
+                    if(data != ""){
+                        for(var i = 0;i < data.length;i++){
+                            var htmlstr = "<option value=\""+data[i].caiming+"\">"+data[i].caiming+"</option>";
+                            $("#xiala3").append(htmlstr);
+                        }
+                    }
+                });
+            }else if($("#xiala2").val() == "法国菜"){
+                $.post("http://localhost:8082/caimingFRENCHquery.action",{"caixi":a1} ,function (data) {
+                    if(data != ""){
+                        for(var i = 0;i < data.length;i++){
+                            var htmlstr = "<option value=\""+data[i].caiming+"\">"+data[i].caiming+"</option>";
+                            $("#xiala3").append(htmlstr);
+                        }
+                    }
+                });
+            }
+        }
+    }
+
+    function xiala3(){
+        if($("#xiala3").val()!=""){
+            var a1 = $("#xiala3").val();
+            var a11= "菜名："+a1;
+            UE.getEditor('editor').execCommand('insertHtml', a11);
+        }
+    }
+
+    function weidao(){
+        if($("#weidao").val()!=""){
+            var a1 = $("#weidao").val();
+            var a11= "味道："+a1;
+            UE.getEditor('editor').execCommand('insertHtml', a11);
+        }
+    }
+
+    function service(){
+        if($("#service").val()!=""){
+            var a1 = $("#service").val();
+            var a11= "服务态度："+a1;
+            UE.getEditor('editor').execCommand('insertHtml', a11);
+        }
+    }
+
+    function huanjing(){
+        if($("#huanjing").val()!=""){
+            var a1 = $("#huanjing").val();
+            var a11= "环境："+a1;
+            UE.getEditor('editor').execCommand('insertHtml', a11);
+        }
+    }
+
+    function dianpu(){
+        if($("#dianpu").val()!=""){
+            var a1 = $("#dianpu").val();
+            var a11= "店铺："+a1;
+            UE.getEditor('editor').execCommand('insertHtml', a11);
+        }
+    }
+    //实例化编辑器
+    //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+    var ue = UE.getEditor('editor');
+
+/*
+    function isFocus(e){
+        alert(UE.getEditor('editor').isFocus());
+        UE.dom.domUtils.preventDefault(e)
+    }
+    function setblur(e){
+        UE.getEditor('editor').blur();
+        UE.dom.domUtils.preventDefault(e)
+    }
+    function insertHtml() {
+        var value = prompt('插入html代码', '');
+        UE.getEditor('editor').execCommand('insertHtml', value)
+    }
+    function createEditor() {
+        enableBtn();
+        UE.getEditor('editor');
+    }
+    function getAllHtml() {
+        alert(UE.getEditor('editor').getAllHtml())
+    }*/
+    /*获取富文本编辑框中的内容*/
+    function getContent() {
+        debugger;
+        var content = UE.getEditor('editor').getContent();
+        if(qianduanlinshiuser != ""){
+            $.post("http://localhost:8082/pinlunbaocun.action",{"content":content,"people":qianduanlinshiuser} ,function (data) {
+                debugger;
+                if(data == true){
+                    alert("保存成功！");
+                }else{
+                    alert("保存失败！");
+                }
+            });
+        }else{
+            alert("您未登录，请先登录！")
+            window.location.href="login.html";
+        }
+
+    }
+   /* function getPlainTxt() {
+        var arr = [];
+        arr.push("使用editor.getPlainTxt()方法可以获得编辑器的带格式的纯文本内容");
+        arr.push("内容为：");
+        arr.push(UE.getEditor('editor').getPlainTxt());
+        alert(arr.join('\n'))
+    }
+    function setContent(isAppendTo) {
+        var arr = [];
+        arr.push("使用editor.setContent('欢迎使用ueditor')方法可以设置编辑器的内容");
+        UE.getEditor('editor').setContent('欢迎使用ueditor', isAppendTo);
+        alert(arr.join("\n"));
+    }
+    function setDisabled() {
+        UE.getEditor('editor').setDisabled('fullscreen');
+        disableBtn("enable");
+    }
+
+    function setEnabled() {
+        UE.getEditor('editor').setEnabled();
+        enableBtn();
+    }
+
+    function getText() {
+        //当你点击按钮时编辑区域已经失去了焦点，如果直接用getText将不会得到内容，所以要在选回来，然后取得内容
+        var range = UE.getEditor('editor').selection.getRange();
+        range.select();
+        var txt = UE.getEditor('editor').selection.getText();
+        alert(txt)
+    }
+
+    function getContentTxt() {
+        var arr = [];
+        arr.push("使用editor.getContentTxt()方法可以获得编辑器的纯文本内容");
+        arr.push("编辑器的纯文本内容为：");
+        arr.push(UE.getEditor('editor').getContentTxt());
+        alert(arr.join("\n"));
+    }
+    function hasContent() {
+        var arr = [];
+        arr.push("使用editor.hasContents()方法判断编辑器里是否有内容");
+        arr.push("判断结果为：");
+        arr.push(UE.getEditor('editor').hasContents());
+        alert(arr.join("\n"));
+    }
+    function setFocus() {
+        UE.getEditor('editor').focus();
+    }
+    function deleteEditor() {
+        disableBtn();
+        UE.getEditor('editor').destroy();
+    }
+    function disableBtn(str) {
+        var div = document.getElementById('btns');
+        var btns = UE.dom.domUtils.getElementsByTagName(div, "button");
+        for (var i = 0, btn; btn = btns[i++];) {
+            if (btn.id == str) {
+                UE.dom.domUtils.removeAttributes(btn, ["disabled"]);
+            } else {
+                btn.setAttribute("disabled", "true");
+            }
+        }
+    }
+    function enableBtn() {
+        var div = document.getElementById('btns');
+        var btns = UE.dom.domUtils.getElementsByTagName(div, "button");
+        for (var i = 0, btn; btn = btns[i++];) {
+            UE.dom.domUtils.removeAttributes(btn, ["disabled"]);
+        }
+    }
+
+    function getLocalData () {
+        alert(UE.getEditor('editor').execCommand( "getlocaldata" ));
+    }
+
+    function clearLocalData () {
+        UE.getEditor('editor').execCommand( "clearlocaldata" );
+        alert("已清空草稿箱")
+    }*/
+</script>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12" style="height: 10px"></div>
+    </div>
+</div>
+
+<!--GET IN TOUCH-->
+<div class="touch-section">
+    <div class="container">
+        <h3>联系我们</h3>
+        <div class="touch-grids">
+            <div class="col-md-4 touch-grid">
+                <h4>地址</h4>
+                <h5>辽宁省鞍山市</h5>
+                <p>鞍山市长甸街道</p>
+                <p>鞍山师范学院对面</p>
+                <p>留香阁餐厅</p>
+            </div>
+            <div class="col-md-4 touch-grid">
+                <h4>咨询</h4>
+                <h5>餐饮咨询</h5>
+                <p>电话 : +182 4226 3022</p>
+                <p>传真 : +182 4226 3022</p>
+                <p>电子信箱 : <a href="mailto:example@mail.com"> 1641165306@qq.com</a></p>
+            </div>
+            <div class="col-md-4 touch-grid">
+                <h4>订餐</h4>
+                <h5>了解详情</h5>
+                <p>电话 : +182 4226 3022</p>
+                <p>传真 : +182 4226 3022</p>
+                <p>电子信箱 : <a href="mailto:example@mail.com"> 1641165306@qq.com</a></p>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<!--GET IN TOUCH-->
+</div>
+<!--footer-->
+<div class="footer-section">
+    <div class="container">
+        <div class="footer-top">
+            <p>留香阁餐厅 &copy; 2015.不一样的我们给你们不一样的美食享受！ <a href="http://www.cssmoban.com/" target="_blank" title="留香阁全体工作人员">Kakurry</a> - Give you a different gourmet feast! <a href="http://www.cssmoban.com/" title="留香阁全体工作人员" target="_blank">Kakurry</a></p>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

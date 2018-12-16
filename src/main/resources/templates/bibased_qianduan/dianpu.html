@@ -1,0 +1,240 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>店铺</title>
+<link href="../../static/bibased_qianduan/css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
+<link href="../../static/bibased_qianduan/css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link rel="stylesheet" href="../../static/bibased_qianduan/css/lightbox.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<script src="../../static/bibased_qianduan/js/jquery-1.11.1.min.js"></script>
+<script src="../../static/bibased_qianduan/js/bootstrap.js"></script>
+<script src="../../static/bibased_qianduan/js/responsiveslides.min.js"></script>
+ <script>
+    $(function () {
+      $("#slider").responsiveSlides({
+      	auto: true,
+      	nav: true,
+      	speed: 500,
+        namespace: "callbacks",
+        pager: true
+      });
+    });
+  </script>
+
+</head>
+<body>
+<!--header-->
+<div class="header">
+    <div class="container">
+        <div class="header-top">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <div class="navbar-brand">
+                            <h1><a href="index.html">留香阁餐厅</a></h1>
+                        </div>
+                    </div>
+                    <div style="position: absolute;right: 0px;top: -5px;font-size: 120%;color: darkorange" id="qianlinshi"></div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="position: relative;">
+                        <ul class="nav navbar-nav" >
+                            <li class="active"><a href="index.html">首页 <span class="sr-only">(current)</span></a></li>
+                            <li><a href="about.html">关于我们</a></li>
+                            <li><a href="services.html">服务</a></li>
+                            <li><a href="dianpu.html">店铺</a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">菜系 <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="chuancai.html">川菜</a></li>
+                                    <li><a href="xiangcai.html">湘菜</a></li>
+                                    <li><a href="yuecai.html">粤菜</a></li>
+                                    <li><a href="frenchcai.html">法国菜</a></li>
+                                    <li><a href="japancai.html">日本菜</a></li>
+                                    <li><a href="koreacai.html">韩国菜</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="dianping.html">点评</a></li>
+                            <li><a href="gallery.html">美食文化</a></li>
+                            <li><a href="jiaotong.html">周围交通</a></li>
+                            <li><a href="liuyanban.html">留言板</a></li>
+                            <li id="dong"><a href="login.html">登录</a></li>
+                        </ul>
+
+                    </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+            </nav>
+
+        </div>
+    </div>
+</div>
+<!--header-->
+<script type="text/javascript">
+    $(document).ready(function() {
+        $.post("http://localhost:8082/dongtaiusername.action", function (data) {
+            debugger;
+            if(data != ""){
+                var htmlstr = "<b> <span>欢迎"+data.username+"用户</span>"+"<a href='' style='text-decoration:none;color: darkorange;' onclick='zhuxiao()'>【注销】</a></b>";
+                $("#qianlinshi").append(htmlstr);
+                $("#dong").hide();
+            }else{
+                $("#qianlinshi").hide();
+                $("#dong").show();
+            }
+        });
+        $.post("http://localhost:8082/qianduandianpu.action", function (data) {
+            debugger;
+            if(data != ""){
+                debugger;
+                for(var i = 1;i<data.length+1;i++){
+                    debugger;
+                    var htmlstr = "<div class=\"room"+i+"\">"+
+                                    "<div class=\"col-md-5 room-grid\">"+
+                                    "<a href=\"#\" class=\"mask\">"+
+                                    "	<img src=\"../../static/bibased_qianduan/images/"+data[i-1].img+".jpg\" class=\" mask img-responsive zoom-img\" alt=\"\" /></a>"+
+                                    "</div>"+
+                                    "<div class=\"col-md-7 room-grid1\">"+
+                                    "	<h4> "+data[i-1].dianming+"</h4>"+
+                                    "	<p>"+data[i-1].neirong1+" </p>"+
+                                    "	<p>"+data[i-1].neirong2+" </p>"+
+                                    "	<p>"+"<b>地址：</b>"+data[i-1].dizhi+" </p>"+
+                                    "</div>"+
+                                    "<div class=\"clearfix\"></div>"+
+                                    "</div>";
+                    $("#dianpudong").append(htmlstr);
+                    console.info(htmlstr);
+                }
+
+            }
+        });
+    });
+</script>
+<script type="text/javascript">
+    function zhuxiao(){
+        alert("注销成功！");
+        $.post("http://localhost:8082/zhuxiao.action", function (data) {
+            if(data == true){
+                qianduanlinshiuser = "";
+                window.location.href="login.html";
+            }
+        });
+    }
+</script>
+
+		<!--rooms-->
+			<div class="content">
+					<div class="room-section">
+						<div class="container">
+						<h2>店铺</h2>
+							<div class="room-grids" id="dianpudong">
+                                <!--<div class="room1">
+                                    <div class="col-md-5 room-grid">
+                                    <a href="#" class="mask">
+                                        <img src="images/r1.jpg" class=" mask img-responsive zoom-img" alt="" /></a>
+                                    </div>
+                                    <div class="col-md-7 room-grid1">
+                                        <h4> Deasrerty摄影或 </h4>
+                                        <p> Lorem存有悲坐阿梅德，consectetuer adipiscing ELIT。目前重塑。茉莉花偏移局开始。南大门。临床承担各种亲爱的。当拉手光芒超级碗山瞬间。不值得的。临床欧盟亩。现在讨厌足球，但孕妇，跑步或哀悼，LOREM。保护者tristique奥奇交流SEM。DUIS ultricies pharetra麦格纳。直到临床accumsan。此外，爱欲。Lorem存有悲坐阿梅德，consectetuer adipiscing ELIT。最大的热身是伟大的。Leo.lorem桑达laoreet aliquam Lorem存有悲坐阿梅德，consectetuer adipiscing elit.lorem Lorem存有悲坐阿梅德，consectetuer adipiscing elit.lorem Lorem存有悲坐阿梅德，consectetuer adipiscing ELIT
+
+                                        </p>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="room2">
+                                    <div class="col-md-5 room-grid">
+                                    <a href="#" class="mask">
+                                        <img src="images/r2.jpg" class="img-responsive zoom-img" alt="" /></a>
+                                    </div>
+                                    <div class="col-md-7 room-grid1">
+                                        <h4> Deasrerty摄影或</h4>
+                                        <p>Lorem存有悲坐阿梅德，consectetuer adipiscing ELIT。目前重塑。茉莉花偏移局开始。南大门。临床承担各种亲爱的。当拉手光芒超级碗山瞬间。不值得的。临床欧盟亩。现在讨厌足球，但孕妇，跑步或哀悼，LOREM。保护者tristique奥奇交流SEM。DUIS ultricies pharetra麦格纳。直到临床accumsan。此外，爱欲。Lorem存有悲坐阿梅德，consectetuer adipiscing ELIT。最大的热身是伟大的。Leo.lorem桑达laoreet aliquam Lorem存有悲坐阿梅德，consectetuer adipiscing elit.lorem Lorem存有悲坐阿梅德，consectetuer adipiscing elit.lorem Lorem存有悲坐阿梅德，consectetuer adipiscing ELIT
+
+                                        </p>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="room3">
+                                        <div class="col-md-5 room-grid">
+                                        <a href="#" class="mask">
+                                            <img src="images/r3.jpg" class="img-responsive zoom-img" alt="" /></a>
+                                        </div>
+                                        <div class="col-md-7 room-grid1">
+                                            <h4>Deasrerty摄影或 </h4>
+                                            <p>Lorem存有悲坐阿梅德，consectetuer adipiscing ELIT。目前重塑。茉莉花偏移局开始。南大门。临床承担各种亲爱的。当拉手光芒超级碗山瞬间。不值得的。临床欧盟亩。现在讨厌足球，但孕妇，跑步或哀悼，LOREM。保护者tristique奥奇交流SEM。DUIS ultricies pharetra麦格纳。直到临床accumsan。此外，爱欲。Lorem存有悲坐阿梅德，consectetuer adipiscing ELIT。最大的热身是伟大的。Leo.lorem桑达laoreet aliquam Lorem存有悲坐阿梅德，consectetuer adipiscing elit.lorem Lorem存有悲坐阿梅德，consectetuer adipiscing elit.lorem Lorem存有悲坐阿梅德，consectetuer adipiscing ELIT
+
+                                            </p>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                </div>
+                                <div class="room4">
+                                        <div class="col-md-5 room-grid">
+                                        <a href="#" class="mask">
+                                            <img src="images/r4.jpg" class="img-responsive zoom-img" alt="" /></a>
+                                        </div>
+                                        <div class="col-md-7 room-grid1">
+                                            <h4> Deasrerty摄影或</h4>
+                                            <p>Lorem存有悲坐阿梅德，consectetuer adipiscing ELIT。目前重塑。茉莉花偏移局开始。南大门。临床承担各种亲爱的。当拉手光芒超级碗山瞬间。不值得的。临床欧盟亩。现在讨厌足球，但孕妇，跑步或哀悼，LOREM。保护者tristique奥奇交流SEM。DUIS ultricies pharetra麦格纳。直到临床accumsan。此外，爱欲。Lorem存有悲坐阿梅德，consectetuer adipiscing ELIT。最大的热身是伟大的。Leo.lorem桑达laoreet aliquam Lorem存有悲坐阿梅德，consectetuer adipiscing elit.lorem Lorem存有悲坐阿梅德，consectetuer adipiscing elit.lorem Lorem存有悲坐阿梅德，consectetuer adipiscing ELIT
+
+                                            </p>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                <div class="clearfix"></div>
+                                </div>-->
+                          </div>
+					    </div>
+				</div>
+				<!--rooms-->
+                <!--GET IN TOUCH-->
+                <div class="touch-section">
+                    <div class="container">
+                        <h3>联系我们</h3>
+                        <div class="touch-grids">
+                            <div class="col-md-4 touch-grid">
+                                <h4>地址</h4>
+                                <h5>辽宁省鞍山市</h5>
+                                <p>鞍山市长甸街道</p>
+                                <p>鞍山师范学院对面</p>
+                                <p>留香阁餐厅</p>
+                            </div>
+                            <div class="col-md-4 touch-grid">
+                                <h4>咨询</h4>
+                                <h5>餐饮咨询</h5>
+                                <p>电话 : +182 4226 3022</p>
+                                <p>传真 : +182 4226 3022</p>
+                                <p>电子信箱 : <a href="mailto:example@mail.com"> 1641165306@qq.com</a></p>
+                            </div>
+                            <div class="col-md-4 touch-grid">
+                                <h4>订餐</h4>
+                                <h5>了解详情</h5>
+                                <p>电话 : +182 4226 3022</p>
+                                <p>传真 : +182 4226 3022</p>
+                                <p>电子信箱 : <a href="mailto:example@mail.com"> 1641165306@qq.com</a></p>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+                <!--GET IN TOUCH-->
+
+        </div>
+<!--footer-->
+<div class="footer-section">
+    <div class="container">
+        <div class="footer-top">
+            <p>留香阁餐厅 &copy; 2015.不一样的我们给你们不一样的美食享受！ <a href="http://www.cssmoban.com/" target="_blank" title="留香阁全体工作人员">Kakurry</a> - Give you a different gourmet feast! <a href="http://www.cssmoban.com/" title="留香阁全体工作人员" target="_blank">Kakurry</a></p>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

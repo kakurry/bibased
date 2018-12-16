@@ -1,0 +1,199 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>画廊页面</title>
+<link href="../../static/bibased_qianduan/css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
+<link href="../../static/bibased_qianduan/css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link rel="stylesheet" href="../../static/bibased_qianduan/css/lightbox.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<script src="../../static/bibased_qianduan/js/jquery-1.11.1.min.js"></script>
+<script src="../../static/bibased_qianduan/js/bootstrap.js"></script>
+</head>
+<body>
+<!--header-->
+<div class="header">
+    <div class="container">
+        <div class="header-top">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <div class="navbar-brand">
+                            <h1><a href="index.html">留香阁餐厅</a></h1>
+                        </div>
+                    </div>
+                    <div style="position: absolute;right: 0px;top: -5px;font-size: 120%;color: darkorange" id="qianlinshi"></div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="position: relative;">
+                        <ul class="nav navbar-nav" >
+                            <li class="active"><a href="index.html">首页 <span class="sr-only">(current)</span></a></li>
+                            <li><a href="about.html">关于我们</a></li>
+                            <li><a href="services.html">服务</a></li>
+                            <li><a href="dianpu.html">店铺</a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">菜系 <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="chuancai.html">川菜</a></li>
+                                    <li><a href="xiangcai.html">湘菜</a></li>
+                                    <li><a href="yuecai.html">粤菜</a></li>
+                                    <li><a href="frenchcai.html">法国菜</a></li>
+                                    <li><a href="japancai.html">日本菜</a></li>
+                                    <li><a href="koreacai.html">韩国菜</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="dianping.html">点评</a></li>
+                            <li><a href="gallery.html">美食文化</a></li>
+                            <li><a href="jiaotong.html">周围交通</a></li>
+                            <li><a href="liuyanban.html">留言板</a></li>
+                            <li id="dong"><a href="login.html">登录</a></li>
+                        </ul>
+
+                    </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+            </nav>
+
+        </div>
+    </div>
+</div>
+<!--header-->
+<script type="text/javascript">
+    $(document).ready(function() {
+        $.post("http://localhost:8082/dongtaiusername.action", function (data) {
+            debugger;
+            if(data != ""){
+                var htmlstr = "<b> <span>欢迎"+data.username+"用户</span>"+"<a href='' style='text-decoration:none;color: darkorange;' onclick='zhuxiao()'>【注销】</a></b>";
+                $("#qianlinshi").append(htmlstr);
+                $("#dong").hide();
+            }else{
+                $("#qianlinshi").hide();
+                $("#dong").show();
+            }
+        });
+
+    });
+</script>
+<script type="text/javascript">
+    function zhuxiao(){
+        alert("注销成功！");
+        $.post("http://localhost:8082/zhuxiao.action", function (data) {
+            if(data == true){
+                qianduanlinshiuser = "";
+                window.location.href="login.html";
+            }
+        });
+    }
+</script>
+		<div class="content">
+			<!-- gallery -->
+	<div class="gallery-top">
+			<!-- container -->
+			<div class="container">
+				<div class="gallery-info">
+					<h2>留香阁餐厅画廊</h2>
+				</div>
+				<div class="gallery-grids-top">
+					<div class="gallery-grids">
+						<div class="col-md-3 gallery-grid">
+							<a class="example-image-link" href="../../static/bibased_qianduan/images/g1.jpg" data-lightbox="example-set" data-title=""><img class="example-image" src="images/g1.jpg" alt="" style="width: 255px;height: 170px;"/></a>
+						</div>
+						<div class="col-md-3 gallery-grid">
+							<a class="example-image-link" href="../../static/bibased_qianduan/images/g2.jpg" data-lightbox="example-set" data-title=""><img class="example-image" src="images/g2.jpg" alt="" style="width: 255px;height: 170px;"/></a>
+						</div>
+						<div class="col-md-3 gallery-grid">
+							<a class="example-image-link" href="../../static/bibased_qianduan/images/g3.jpg" data-lightbox="example-set" data-title=""><img class="example-image" src="images/g3.jpg" alt="" style="width: 255px;height: 170px;"/></a>
+						</div>
+						<div class="col-md-3 gallery-grid">
+							<a class="example-image-link" href="../../static/bibased_qianduan/images/g4.jpg" data-lightbox="example-set" data-title=""><img class="example-image" src="images/g4.jpg" alt="" style="width: 255px;height: 170px;"/></a>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+					<div class="gallery-grids gallery-grids-middle">
+						<div class="col-md-3 gallery-grid">
+							<a class="example-image-link" href="../../static/bibased_qianduan/images/g5.jpg" data-lightbox="example-set" data-title=""><img class="example-image" src="images/g5.jpg" alt="" style="width: 255px;height: 170px;"/></a>
+						</div>
+						<div class="col-md-3 gallery-grid">
+							<a class="example-image-link" href="../../static/bibased_qianduan/images/g6.jpg" data-lightbox="example-set" data-title=""><img class="example-image" src="images/g6.jpg" alt="" style="width: 255px;height: 170px;"/></a>
+						</div>
+						<div class="col-md-3 gallery-grid">
+							<a class="example-image-link" href="../../static/bibased_qianduan/images/g7.jpg" data-lightbox="example-set" data-title=""><img class="example-image" src="images/g7.jpg" alt="" style="width: 255px;height: 170px;"/></a>
+						</div>
+						<div class="col-md-3 gallery-grid">
+							<a class="example-image-link" href="../../static/bibased_qianduan/images/g8.jpg" data-lightbox="example-set" data-title=""><img class="example-image" src="images/g8.jpg" alt="" style="width: 255px;height: 170px;"/></a>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+					<div class="gallery-grids">
+						<div class="col-md-3 gallery-grid">
+							<a class="example-image-link" href="../../static/bibased_qianduan/images/g9.jpg" data-lightbox="example-set" data-title=""><img class="example-image" src="images/g9.jpg" alt="" style="width: 255px;height: 170px;"/></a>
+						</div>
+						<div class="col-md-3 gallery-grid">
+							<a class="example-image-link" href="../../static/bibased_qianduan/images/g10.jpg" data-lightbox="example-set" data-title=""><img class="example-image" src="images/g10.jpg" alt="" style="width: 255px;height: 170px;"/></a>
+						</div>
+						<div class="col-md-3 gallery-grid">
+							<a class="example-image-link" href="../../static/bibased_qianduan/images/g11.jpg" data-lightbox="example-set" data-title=""><img class="example-image" src="images/g11.jpg" alt="" style="width: 255px;height: 170px;"/></a>
+						</div>
+						<div class="col-md-3 gallery-grid">
+							<a class="example-image-link" href="../../static/bibased_qianduan/images/g12.jpg" data-lightbox="example-set" data-title=""><img class="example-image" src="images/g12.jpg" alt="" style="width: 255px;height: 170px;"/></a>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+					<script src="../../static/bibased_qianduan/js/lightbox-plus-jquery.min.js"></script>
+				</div>
+			</div>
+			<!-- //container -->
+	</div>
+	<!-- //gallery -->
+
+            <!--most-popular-->
+            <!--GET IN TOUCH-->
+            <div class="touch-section">
+                <div class="container">
+                    <h3>联系我们</h3>
+                    <div class="touch-grids">
+                        <div class="col-md-4 touch-grid">
+                            <h4>地址</h4>
+                            <h5>辽宁省鞍山市</h5>
+                            <p>鞍山市长甸街道</p>
+                            <p>鞍山师范学院对面</p>
+                            <p>留香阁餐厅</p>
+                        </div>
+                        <div class="col-md-4 touch-grid">
+                            <h4>咨询</h4>
+                            <h5>餐饮咨询</h5>
+                            <p>电话 : +182 4226 3022</p>
+                            <p>传真 : +182 4226 3022</p>
+                            <p>电子信箱 : <a href="mailto:example@mail.com"> 1641165306@qq.com</a></p>
+                        </div>
+                        <div class="col-md-4 touch-grid">
+                            <h4>订餐</h4>
+                            <h5>了解详情</h5>
+                            <p>电话 : +182 4226 3022</p>
+                            <p>传真 : +182 4226 3022</p>
+                            <p>电子信箱 : <a href="mailto:example@mail.com"> 1641165306@qq.com</a></p>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+            <!--GET IN TOUCH-->
+        </div>
+<!--footer-->
+<div class="footer-section">
+    <div class="container">
+        <div class="footer-top">
+            <p>留香阁餐厅 &copy; 2015.不一样的我们给你们不一样的美食享受！ <a href="http://www.cssmoban.com/" target="_blank" title="留香阁全体工作人员">Kakurry</a> - Give you a different gourmet feast! <a href="http://www.cssmoban.com/" title="留香阁全体工作人员" target="_blank">Kakurry</a></p>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>
